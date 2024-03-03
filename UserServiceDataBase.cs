@@ -60,5 +60,47 @@ namespace ProjektLAB
                 }
             }
         }
+
+        public static User TryLoginUser(string login, string password)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT Id, Login, Password, First_Name, Last_Name, BirthDay FROM [dbo].[User] WHERE Login = @Login AND Password = @Password";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Login", login);
+                    cmd.Parameters.AddWithValue("@Password", password);
+
+                    try
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Tworzenie i zwracanie użytkownika z danymi
+                                User user = new User()
+                                {
+                                    Id = Convert.ToInt32(reader["Id"]),
+                                    Login = reader["Login"].ToString(),
+                                    Password = reader["Password"].ToString(),
+                                    First_Name = reader["First_Name"].ToString(),
+                                    Last_Name = reader["Last_Name"].ToString(),
+                                    BirthDay = reader["BirthDay"].ToString()
+                                };
+                                return user;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Wystąpił błąd podczas próby logowania: {ex.Message}", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            return null;
+        
     }
+}
 }

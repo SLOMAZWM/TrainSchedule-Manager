@@ -127,11 +127,11 @@
 
                         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5,10,10">
                             <TextBlock Style="{StaticResource TextInput}" Text="Hasło:" Width="125" Margin="0,13,0,0"/>
-                            <TextBox x:Name="LoginPasswordTxt" Style="{StaticResource Input}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250"/>
+                            <PasswordBox x:Name="LoginPasswordTxt" Style="{StaticResource InputPassword}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,125,10,10">
-                            <Button Style="{StaticResource LogicButton}" Margin="45,0,0,0">
+                            <Button Style="{StaticResource LogicButton}" Margin="45,0,0,0" Click="LoginBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FolderDownload" VerticalAlignment="Center" Width="15" Height="15" Margin="0,1,8,0"/>
                                     <TextBlock Text="Zaloguj się"/>

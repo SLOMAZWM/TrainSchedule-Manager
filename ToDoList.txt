@@ -1,19 +1,13 @@
-﻿1. Stworzenie ladnego interfejsu (przyjazdy i rozjazdy)
+﻿1. Stworzenie ladnego interfejsu (przyjazdy i ODJAZDY)
 2. Dodanie nawigacji
 
 
 FUNKCJONALNOŚCI:
 
--SYSTEM LOGOWANIA I REJESTRACJI
-a) stworz logowanie
-b) stworz okno glowne po logowaniu/rejestracji
-
--NAWIGACJA
--DODAWANIE
--USUWANIE
--EDYTOWANIE
--SYSTEM LOGOWANIA I REJESTRACJI
--ZAKUP BILETOW
+-PRZEGLĄD PRZYJAZDÓW I ODJAZDÓW POCIĄGÓW
+-KUPOWANIE BILETOW
+-ZWRACANIE BILETOW
+-SYSTEM LOGOWANIA I REJESTRACJI - ZROBIONE
 -PRZEGLAD ZAKUPIONYCH BILETOW
 
 LISTA KOLOROW:

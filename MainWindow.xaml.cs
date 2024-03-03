@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjektLAB.TrainService;
 
 namespace ProjektLAB
 {
@@ -21,7 +22,7 @@ namespace ProjektLAB
             InitializeComponent();
         }
 
-        private bool IsValid()
+        private bool IsValidRegister()
         {
             if(RegisterLoginTxt.Text.Length < 4) 
             {
@@ -51,9 +52,24 @@ namespace ProjektLAB
             return true;
         }
 
+        private bool IsValidLogin()
+        {
+            if(LoginLoginTxt.Text.Length <= 0)
+            {
+                MessageBox.Show("Wypełnij Pole Loginu, w Logowaniu", "Błąd logowania", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if(LoginPasswordTxt.Password == null) 
+            {
+                MessageBox.Show("Wypełnij Pole Hasła, w Logowaniu", "Błąd logowania", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(IsValid()) 
+            if(IsValidRegister()) 
             {
                 User registerUser = new User()
                 {
@@ -68,6 +84,26 @@ namespace ProjektLAB
            else
             {
                 return;
+            }
+        }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e ) 
+        {
+            if(IsValidLogin()) 
+            {
+                User loggedUser = UserServiceDataBase.TryLoginUser(LoginLoginTxt.Text, LoginPasswordTxt.Password);
+
+                if(loggedUser != null) 
+                {
+                    MessageBox.Show("Zalogowano pomyślnie!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                    TrainServiceWindow newWindow = new TrainServiceWindow(loggedUser);
+                    newWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Login lub hasło jest niepoprawne!", "Błąd logowania", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
