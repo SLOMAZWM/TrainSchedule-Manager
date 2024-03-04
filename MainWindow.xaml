@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Okno Rejestracji" Height="650" Width="1000" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
 
-    <Border Background="#333333" CornerRadius="30" BorderThickness="1" BorderBrush="#E8DDB5">
+    <Border Background="#333333" CornerRadius="30" BorderThickness="1" BorderBrush="#E8DDB5" MouseDown="Border_MouseDown">
         
         <Grid>
             <Grid.RowDefinitions>
