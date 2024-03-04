@@ -29,7 +29,7 @@ namespace ProjektLAB
                 MessageBox.Show("Wypełnij Pole Loginu w rejestracji - użyj minimum 4 znaków!", "Błąd rejestracji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if(RegisterPasswordTxt.Password.Length < 5) 
+            if(RegisterPasswordTxt.Password.Length < 8) 
             {
                 MessageBox.Show("Wypełnij Pole Hasła w rejestracji - użyj minimum 5 znaków!", "Błąd rejestracji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;

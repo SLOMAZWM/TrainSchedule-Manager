@@ -1,14 +1,23 @@
 ﻿1. Stworzenie ladnego interfejsu (przyjazdy i ODJAZDY)
 2. Dodanie nawigacji
+a) Terminarz
+b) Historia
+c) Wyszukiwarka polaczen
+d) Informacje o uzytkowniku
 
 
 FUNKCJONALNOŚCI:
 
--PRZEGLĄD PRZYJAZDÓW I ODJAZDÓW POCIĄGÓW
--KUPOWANIE BILETOW
--ZWRACANIE BILETOW
+-PRZEGLĄD PRZYJAZDÓW I ODJAZDÓW POCIĄGÓW NA 3 STACJACH
+-SZCZEGOLOWE INFORMACJE O PODROZY (PLANOWANE)
 -SYSTEM LOGOWANIA I REJESTRACJI - ZROBIONE
--PRZEGLAD ZAKUPIONYCH BILETOW
+-CZAS PRZESIADEK
+-OPOZNIENIA
+-HISTORIA
+
+3 stacje = Opole, Wrocław, Łódź, rozni przewoznicy
+
+
 
 LISTA KOLOROW:
 
