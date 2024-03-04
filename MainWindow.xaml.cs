@@ -80,11 +80,24 @@ namespace ProjektLAB
                     BirthDay = BirthDayDP.Text
                 };
                 UserServiceDataBase.AddNewUserToDataBase(registerUser);
+                RegisterClearInputs();
+                TrainServiceWindow Window = new TrainServiceWindow(registerUser);
+                Window.Show();
+                this.Close();
             }
            else
             {
                 return;
             }
+        }
+
+        private void RegisterClearInputs()
+        {
+            RegisterLoginTxt.Text = "";
+            RegisterPasswordTxt.Password = "";
+            First_NameTxt.Text = "";
+            Last_NameTxt.Text = "";
+            BirthDayDP.Text = "";
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e ) 

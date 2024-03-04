@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:ProjektLAB.TrainService"
         mc:Ignorable="d"
         Title="Główne okno Aplikacji SSD" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    
 </Window>
