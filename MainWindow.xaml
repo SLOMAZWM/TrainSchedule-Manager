@@ -28,12 +28,12 @@
                 </Button>
             </StackPanel>
 
-            <Border BorderThickness="1" BorderBrush="#E8DDB5" Height="85" Width="900" Grid.Row="0" Grid.Column="1" Background="#666A86" CornerRadius="50" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0">
+            <Border BorderThickness="1" BorderBrush="#E8DDB5" Height="85" Width="900" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#4E4E4E" CornerRadius="15" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="45,20,0,0">
                 <Label Content="Przyjazdy i odjazdy SSD" Style="{StaticResource TopLabel}"/>
             </Border>
 
             <Grid Grid.Row="1" Grid.Column="1">
-                <Border Height="490" Width="auto" Background="#666A86" CornerRadius="10" BorderBrush="#E8DDB5" BorderThickness="1"/>
+                <Border Height="490" Width="auto" Background="Gray" CornerRadius="10" BorderBrush="#E8DDB5" BorderThickness="1"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

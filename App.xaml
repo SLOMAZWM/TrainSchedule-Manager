@@ -34,7 +34,9 @@
         
         <!--Top Label-->
         <Style TargetType="Label" x:Key="TopLabel">
-            <Setter Property="FontSize" Value="46"/>
+            <Setter Property="FontSize" Value="42"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontFamily" Value="Ebrima"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="#E8DDB5"/>
@@ -44,7 +46,7 @@
 
         <Style x:Key="TextInput" TargetType="TextBlock">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#95B8D1"/>
+            <Setter Property="Foreground" Value="#E8DDB5"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Margin" Value="5,20,0,0"/>
@@ -119,7 +121,7 @@
         <!--Register Button-->
 
         <Style x:Key="LogicButton" TargetType="Button">
-            <Setter Property="Background" Value="#95B8D1"/>
+            <Setter Property="Background" Value="#333333"/>
             <Setter Property="Foreground" Value="#ffffff"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="Width" Value="150"/>
@@ -139,7 +141,7 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#7396B0"/>
+                    <Setter Property="Background" Value="#111111"/>
                     <Setter Property="Foreground" Value="#ffffff"/>
                     <Setter Property="Cursor" Value="Hand"/>
                 </Trigger>
