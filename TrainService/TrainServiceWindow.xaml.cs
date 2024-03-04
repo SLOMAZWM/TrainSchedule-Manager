@@ -19,11 +19,27 @@ namespace ProjektLAB.TrainService
     /// </summary>
     public partial class TrainServiceWindow : Window
     {
-        public User User { get; set; }
+        public User ? User { get; set; }
         public TrainServiceWindow(User loggedUser)
         {
             InitializeComponent();
             User = loggedUser;
+        }
+
+        public TrainServiceWindow() //Guest Login
+        {
+            InitializeComponent();
+            User = null;
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e) 
+        {
+            this.Close();
         }
     }
 }

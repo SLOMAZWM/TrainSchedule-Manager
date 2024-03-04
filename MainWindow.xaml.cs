@@ -31,7 +31,7 @@ namespace ProjektLAB
             }
             if(RegisterPasswordTxt.Password.Length < 8) 
             {
-                MessageBox.Show("Wypełnij Pole Hasła w rejestracji - użyj minimum 5 znaków!", "Błąd rejestracji", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Wypełnij Pole Hasła w rejestracji - użyj minimum 8 znaków!", "Błąd rejestracji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             if(First_NameTxt.Text.Length == 0) 
@@ -118,6 +118,13 @@ namespace ProjektLAB
                     MessageBox.Show("Login lub hasło jest niepoprawne!", "Błąd logowania", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void GuestLoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TrainServiceWindow guestLogin = new TrainServiceWindow();
+            guestLogin.Show();
+            this.Close();
         }
 
 

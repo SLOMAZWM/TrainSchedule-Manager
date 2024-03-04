@@ -5,6 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektLAB.TrainService"
         mc:Ignorable="d"
-        Title="Główne okno Aplikacji SSD" Height="750" Width="1140">
-    
+                 xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Title="Główne okno aplikacji - SSD" Height="650" Width="1240" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+
+    <Border Background="#333333" CornerRadius="30" BorderThickness="1" BorderBrush="#E8DDB5" MouseDown="Border_MouseDown">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right">
+                <Button x:Name="ExitBtn" VerticalAlignment="Top" Margin="10" Style="{StaticResource topButton}" Click="ExitBtn_Click">
+                    <Icon:PackIconMaterial Kind="ExitRun" Width="20" Height="20"/>
+                </Button>
+            </StackPanel>
+
+            <Border Grid.Row="1" Grid.Column="0" Background="Gray" CornerRadius="0,20,20,0" Width="200" Height="500" BorderThickness="1" BorderBrush="#E8DDB5">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Style="{StaticResource NavigationTopLabel}" Content="NAWIGACJA APLIKACJI" />
+
+                </Grid>
+
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="2" Background="Gray" CornerRadius="20,0,0,20" Width="200" Height="500" BorderThickness="1" BorderBrush="#E8DDB5">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Style="{StaticResource NavigationTopLabel}" Content="LOGIN UŻYTKOWNIKA" />
+
+                </Grid>
+                
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="1" Background="Gray" Height="80" CornerRadius="15" Margin="0,15,0,0" BorderThickness="1" BorderBrush="#E8DDB5">
+
+                <Label x:Name="TitleLbl" Style="{StaticResource TopLabel}" Content="AKTUALNY TERMINARZ" FontWeight="Medium"/>
+
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="1" Background="Gray" CornerRadius="15" BorderThickness="1" BorderBrush="#E8DDB5" Margin="10,25,10,25">
+                
+            </Border>
+            
+        </Grid>
+        
+    </Border>
+
 </Window>
