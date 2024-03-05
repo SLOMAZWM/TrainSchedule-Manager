@@ -25,6 +25,7 @@
 
             <Border Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" CornerRadius="20" BorderThickness="1" BorderBrush="#E8DDB5" Background="Gray">
 
+                <Frame x:Name="ContentFrame"/>
 
             </Border>
 
@@ -44,7 +45,7 @@
 
                 <StackPanel>
 
-                    <Button Style="{StaticResource NavigationButton}" Margin="5,140,5,5">
+                    <Button x:Name="HomePageBtn" Tag="Home" Click="NavigationBtn_Click" Style="{StaticResource NavigationButton}" Margin="5,140,5,5">
                     <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
@@ -66,18 +67,18 @@
                     </Grid>
                 </Button>
 
-                    <Button Style="{StaticResource NavigationButton}">
+                    <Button x:Name="Schedule" Style="{StaticResource NavigationButton}">
                         <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Icon:PackIconMaterial Grid.Column="0" Kind="CalendarAccount" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                            <Label Grid.Column="1" Style="{StaticResource LabelButton}" Content="Grafik" Margin="-10,0,0,0"/>
+                            <Label Grid.Column="1" Style="{StaticResource LabelButton}" Content="Harmonogram" Margin="-10,0,0,0"/>
                         </Grid>
                     </Button>
 
-                    <Button Style="{StaticResource NavigationButton}">
+                    <Button x:Name="Stations" Style="{StaticResource NavigationButton}">
                         <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>

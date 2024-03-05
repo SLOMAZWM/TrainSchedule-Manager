@@ -1,19 +1,13 @@
-﻿1. Stworzenie ladnego interfejsu (przyjazdy i ODJAZDY)
-2. Dodanie nawigacji
-a) Terminarz
-b) Historia
-c) Wyszukiwarka polaczen
-d) Informacje o uzytkowniku
+﻿
 
 
 FUNKCJONALNOŚCI:
 
--PRZEGLĄD PRZYJAZDÓW I ODJAZDÓW POCIĄGÓW NA 3 STACJACH
--SZCZEGOLOWE INFORMACJE O PODROZY (PLANOWANE)
--SYSTEM LOGOWANIA I REJESTRACJI - ZROBIONE
--CZAS PRZESIADEK
--OPOZNIENIA
--HISTORIA
+-Wyszukiwanie polaczen, informacje o przesiadkach (w tym czas przesiadek)
+-Harmonogram pracownikow
+-Zarzadzanie stacjami (w nim, opoznienia, dodawanie/usuwanie polaczen)
+-System logowania i rejestracji dla pracownikow - przechowywanie informacji o uzytkowniku
+
 
 3 stacje = Opole, Wrocław, Łódź, rozni przewoznicy
 
