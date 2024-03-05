@@ -30,7 +30,7 @@
 
             <Border Background="#4E4E4E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Width="1240" BorderBrush="#E8DDB5" BorderThickness="1" Margin="0,0,0,5" HorizontalAlignment="Center" CornerRadius="30,30,0,0">
 
-                <Label x:Name="TitleLbl" Style="{StaticResource TopLabel}" Content="AKTUALNY TERMINARZ" FontWeight="Medium"/>
+                <Label x:Name="TitleLbl" Style="{StaticResource TopLabel}" Content="STRONA GŁÓWNA" FontSize="40"/>
 
             </Border>
 
@@ -39,6 +39,24 @@
                     <Icon:PackIconMaterial Kind="ExitRun" Width="20" Height="20"/>
                 </Button>
             </StackPanel>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Style="{StaticResource NavigationButton}" Margin="5,30,5,5">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Home" Margin="0,6,5,0"/>
+                        <Label Style="{StaticResource LabelButton}" Content="Strona Główna"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
 
         </Grid>
 
