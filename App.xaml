@@ -160,16 +160,25 @@
 
         <Style TargetType="Button" x:Key="NavigationButton" BasedOn="{StaticResource LogicButton}">
             <Setter Property="Width" Value="140"/>
+            <Setter Property="Margin" Value="5,10,5,5"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border BorderBrush="#E8DDB5" BorderThickness="1" CornerRadius="7">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#E8DDB5" BorderThickness="1" CornerRadius="7">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#111111"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+            
         </Style>
 
         <Style TargetType="Label" x:Key="LabelButton">
@@ -177,6 +186,8 @@
             <Setter Property="FontFamily" Value="Ebrima"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="Icon:PackIconMaterial" x:Key="NavigationImage">

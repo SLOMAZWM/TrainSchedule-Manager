@@ -42,20 +42,53 @@
 
             <Grid Grid.Row="1" Grid.Column="0">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+                <StackPanel>
 
-                <Button Style="{StaticResource NavigationButton}" Margin="5,30,5,5">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Home" Margin="0,6,5,0"/>
-                        <Label Style="{StaticResource LabelButton}" Content="Strona Główna"/>
-                    </StackPanel>
+                    <Button Style="{StaticResource NavigationButton}" Margin="5,140,5,5">
+                    <Grid Width="140">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        <Icon:PackIconMaterial Kind="Home" Margin="10,0,0,0" Grid.Column="0" VerticalAlignment="Center"/>
+                        <Label Style="{StaticResource LabelButton}" Content="Strona Główna" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="-10,0,0,0"/>
+                    </Grid>
                 </Button>
 
+                <Button Style="{StaticResource NavigationButton}">
+                    <Grid Width="140">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        <Icon:PackIconMaterial Kind="Calendar" Margin="10,0,0,0" Grid.Column="0" VerticalAlignment="Center"/>
+                        <Label Style="{StaticResource LabelButton}" Content="Rozkład Jazdy" Grid.Column="1"/>
+                    </Grid>
+                </Button>
+
+                    <Button Style="{StaticResource NavigationButton}">
+                        <Grid Width="140">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Icon:PackIconMaterial Grid.Column="0" Kind="CalendarAccount" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <Label Grid.Column="1" Style="{StaticResource LabelButton}" Content="Grafik" Margin="-10,0,0,0"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Style="{StaticResource NavigationButton}">
+                        <Grid Width="140">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Icon:PackIconMaterial Kind="Train" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0"/>
+                            <Label Style="{StaticResource LabelButton}" Content="Stacje" Grid.Column="1" Margin="-10,0,0,0"/>
+                        </Grid>
+                    </Button>
+
+                </StackPanel>
             </Grid>
 
         </Grid>
