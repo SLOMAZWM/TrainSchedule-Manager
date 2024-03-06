@@ -24,6 +24,7 @@ namespace ProjektLAB.TrainService
         private Dictionary<string, Page> PageDictionary = new Dictionary<string, Page>()
 {
             { "Home", new HomePage()},
+            {"TimeTable", new TimeTablePage()},
             //Add new Page
     };
 

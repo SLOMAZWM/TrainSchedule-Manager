@@ -1,4 +1,4 @@
-﻿<Page x:Class="ProjektLAB.TrainService.Pages.HomePage"
+﻿<Page x:Class="ProjektLAB.TrainService.Pages.TimeTablePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,16 +6,16 @@
       xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HomePage">
+      Title="TimeTablePage">
 
-    <Border Background="Gray" CornerRadius="20" >
-        
-    <Grid>
+    <Border Background="Gray" CornerRadius="20">
 
-            <Label Content="Strona Główna" Style="{StaticResource TopLabel}"/>
+        <Grid>
 
+            <Label Content="Rozkład Jazdy" Style="{StaticResource TopLabel}"/>
 
         </Grid>
 
     </Border>
+    
 </Page>
