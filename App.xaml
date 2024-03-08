@@ -548,6 +548,51 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 </Style.Triggers>
             </Style>
 
+            <Style TargetType="Expander" x:Key="CustomExpanderStyle">
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Foreground" Value="#121518"/>
+                <Setter Property="BorderBrush" Value="#E8DDB5"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Margin" Value="0,5,0,5"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <!-- Set the ToggleButton style -->
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Expander">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                                <StackPanel>
+                                    <ToggleButton IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Content="{TemplateBinding Header}" Padding="5"/>
+                                    <ContentPresenter Content="{TemplateBinding Content}" Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Custom style for the NumericUpDown (using MahApps.Metro) -->
+            <Style TargetType="{x:Type mah:NumericUpDown}" x:Key="CustomNumericUpDownStyle">
+                <Setter Property="Background" Value="#E8DDB5"/>
+                <Setter Property="Foreground" Value="#121518"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="BorderBrush" Value="#121518"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Width" Value="75"/>
+                <Setter Property="Height" Value="Auto"/>
+            </Style>
+
+            <!-- Custom style for TextBlock used as a label inside Expander -->
+            <Style TargetType="TextBlock" x:Key="CustomTextBlockStyle">
+                <Setter Property="Foreground" Value="#121518"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="0,5,10,5"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
         </ResourceDictionary>
 
     </Application.Resources>

@@ -24,8 +24,7 @@ namespace ProjektLAB.TrainService.Pages
         public TimeTablePage()
         {
             InitializeComponent();
-            InitializeStations();
-            InitializeTime();
+            InitializePage();
         }
 
         private void InitializeStations()
@@ -37,6 +36,13 @@ namespace ProjektLAB.TrainService.Pages
             ArrivalToCB.Items.Add("Opole");
             ArrivalToCB.Items.Add("Wrocław");
             ArrivalToCB.Items.Add("Łódź");
+        }
+
+        private void InitializePage()
+        {
+            InitializeStations();
+            InitializeTime();
+            InitializePassengers();
         }
 
         private void InitializePassengers()

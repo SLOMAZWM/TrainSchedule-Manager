@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjektLAB.TrainService"
         mc:Ignorable="d"
                  xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="Główne okno aplikacji - SSD" Height="650" Width="1380" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+        Title="Główne okno aplikacji - SSD" Height="650" Width="1480" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
 
     <Border Background="#333333" CornerRadius="30" BorderThickness="1" BorderBrush="#E8DDB5" MouseDown="Border_MouseDown">
 
@@ -29,7 +29,7 @@
 
             </Border>
 
-            <Border Background="#4E4E4E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Width="1380" BorderBrush="#E8DDB5" BorderThickness="1" Margin="0,0,0,5" HorizontalAlignment="Center" CornerRadius="30,30,0,0">
+            <Border Background="#4E4E4E" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Width="1480" BorderBrush="#E8DDB5" BorderThickness="1" Margin="0,0,0,5" HorizontalAlignment="Center" CornerRadius="30,30,0,0">
 
                 <Label x:Name="TitleLbl" Style="{StaticResource TopLabel}" Content="STRONA GŁÓWNA" FontSize="40"/>
 
