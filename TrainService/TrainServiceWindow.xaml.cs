@@ -23,8 +23,8 @@ namespace ProjektLAB.TrainService
         public User? User { get; set; }
         private Dictionary<string, Page> PageDictionary = new Dictionary<string, Page>()
 {
-            { "Home", new HomePage()},
-            {"TimeTable", new TimeTablePage()},
+            { "STRONA GŁÓWNA", new HomePage()},
+            {"ROZKŁAD JAZDY", new TimeTablePage()},
             //Add new Page
     };
 
@@ -67,6 +67,7 @@ namespace ProjektLAB.TrainService
                 if (PageDictionary.TryGetValue(pageKey, out pageToNavigate))
                  { 
                     ContentFrame.Navigate(pageToNavigate);
+                    TitleLbl.Content = pageKey;
                 }
             }
         }

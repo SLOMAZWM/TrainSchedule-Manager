@@ -3,16 +3,72 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+
       xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1080"
       Title="TimeTablePage">
 
     <Border Background="Gray" CornerRadius="20">
 
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <Label Content="Rozkład Jazdy" Style="{StaticResource TopLabel}"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,5,0,5">
+                <Label FontWeight="Bold" Content="Wyszukiwarka połączeń:" Style="{StaticResource TopLabel}" Grid.Row="0" FontSize="32"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Label Content="Wyjazd z:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
+                <ComboBox x:Name="DepartureFromCB" Style="{StaticResource SelectUser}"/>
+
+                <Label Content="Przyjazd do:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
+                <ComboBox x:Name="ArrivalToCB" Style="{StaticResource SelectUser}"/>
+
+                <Label Content="Data wyjazdu:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
+                <DatePicker Style="{StaticResource GetDateFromUser}" />
+
+                <Label Content="Godzina wyjazdu:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
+                <ComboBox x:Name="DepartureHourCB" Style="{StaticResource SelectUser}" />
+
+                <!-- Dodajemy Expander z rozwijaną listą pasażerów -->
+                <Expander Header="Pasażerowie / Ulgi" IsExpanded="True" Grid.Row="2">
+                    <StackPanel>
+                        <!-- Sekcja dla biletu normalnego -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="Bilet normalny" Margin="10,0"/>
+                            <mahApps:NumericUpDown x:Name="NormalTicketCount" Minimum="0" Maximum="10" Interval="1" Margin="10,0"/>
+                        </StackPanel>
+
+                        <!-- Sekcja dla dzieci/młodzieży -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="Dzieci / Młodzież" Margin="10,0"/>
+                            <mahApps:NumericUpDown x:Name="YouthTicketCount" Minimum="0" Maximum="10" Interval="1" Margin="10,0"/>
+                        </StackPanel>
+
+                        <!-- Sekcja dla studentów -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="Studenci" Margin="10,0"/>
+                            <mahApps:NumericUpDown x:Name="StudentTicketCount" Minimum="0" Maximum="10" Interval="1" Margin="10,0"/>
+                        </StackPanel>
+
+                        <!-- Sekcja dla seniorów -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="Seniorzy" Margin="10,0"/>
+                            <mahApps:NumericUpDown x:Name="SeniorTicketCount" Minimum="0" Maximum="10" Interval="1" Margin="10,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+
+            <Separator Grid.Row="2" Background="#E8DDB5"/>
 
         </Grid>
 
