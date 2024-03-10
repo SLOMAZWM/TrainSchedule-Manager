@@ -7,7 +7,7 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
 
       xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1080"
+      d:DesignHeight="450" d:DesignWidth="1180"
       Title="TimeTablePage">
 
     <Border Background="Gray" CornerRadius="20">
@@ -39,37 +39,39 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Label Content="Godzina wyjazdu:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
                 <ComboBox x:Name="DepartureHourCB" Style="{StaticResource SelectUser}" />
 
-                <!-- Dodajemy Expander z rozwijaną listą pasażerów -->
-                <Expander Style="{StaticResource CustomExpanderStyle}" Header="Pasażerowie / Ulgi" IsExpanded="True" Grid.Row="2">
+                
+                <!--<Expander Style="{StaticResource CustomExpanderStyle}" Header="Pasażerowie / Ulgi" IsExpanded="True" Grid.Row="2" Margin="10,0,0,0">
                     <StackPanel>
-                        <!-- Sekcja dla biletu normalnego -->
+                       
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Bilet normalny" Margin="10,0"/>
                             <mahApps:NumericUpDown Style="{StaticResource CustomNumericUpDownStyle}" x:Name="NormalTicketCount" Minimum="0" Maximum="10" Interval="1" Margin="10,0"/>
                         </StackPanel>
 
-                        <!-- Sekcja dla dzieci/młodzieży -->
+                        
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Dzieci / Młodzież" Margin="10,0"/>
                             <mahApps:NumericUpDown Style="{StaticResource CustomNumericUpDownStyle}" x:Name="YouthTicketCount" Minimum="0" Maximum="10" Interval="1" Margin="10,0"/>
                         </StackPanel>
 
-                        <!-- Sekcja dla studentów -->
+                        
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Studenci" Margin="10,0"/>
                             <mahApps:NumericUpDown Style="{StaticResource CustomNumericUpDownStyle}" x:Name="StudentTicketCount" Minimum="0" Maximum="10" Interval="1" Margin="10,0"/>
                         </StackPanel>
 
-                        <!-- Sekcja dla seniorów -->
+                        
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Style="{StaticResource CustomTextBlockStyle}" Text="Seniorzy" Margin="10,0"/>
                             <mahApps:NumericUpDown Style="{StaticResource CustomNumericUpDownStyle}" x:Name="SeniorTicketCount" Minimum="0" Maximum="10" Interval="1" Margin="10,0"/>
                         </StackPanel>
                     </StackPanel>
-                </Expander>
+                </Expander>-->
             </StackPanel>
 
             <Separator Grid.Row="2" Background="#E8DDB5"/>
+            
+            
 
         </Grid>
 

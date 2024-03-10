@@ -25,7 +25,8 @@ namespace ProjektLAB.TrainService
 {
             { "STRONA GŁÓWNA", new HomePage()},
             {"ROZKŁAD JAZDY", new TimeTablePage()},
-            //Add new Page
+            {"HARMONOGRAM", new SchedulePage() },
+            {"STACJE", new StationsPage() },
     };
 
         public TrainServiceWindow(User loggedUser)

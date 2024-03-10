@@ -3,10 +3,11 @@
 
 FUNKCJONALNOŚCI:
 
--Wyszukiwanie polaczen, informacje o przesiadkach (w tym czas przesiadek)
--Harmonogram pracownikow
--Zarzadzanie stacjami (w nim, opoznienia, dodawanie/usuwanie polaczen)
--System logowania i rejestracji dla pracownikow - przechowywanie informacji o uzytkowniku
+-Wyszukiwanie polaczen, informacje o przesiadkach (w tym czas przesiadek, perony)
+-Harmonogram zmiań pracowników
+-Zarzadzanie stacjami (w nim opoznienia, dodawanie/usuwanie polaczen)
+-System logowania i rejestracji dla pracownikow - przechowywanie informacji o uzytkowniku, certyfikaty, godziny i dni pracy w tyg.
+-Zarządzanie użytkownikami (pasażerami) - podgląd na ich trasy, historie podrozy
 
 
 3 stacje = Opole, Wrocław, Łódź, rozni przewoznicy

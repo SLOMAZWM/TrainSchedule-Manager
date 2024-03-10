@@ -67,7 +67,7 @@
                     </Grid>
                 </Button>
 
-                    <Button x:Name="Schedule" Style="{StaticResource NavigationButton}">
+                    <Button x:Name="Schedule" Style="{StaticResource NavigationButton}" Tag="HARMONOGRAM" Click="NavigationBtn_Click">
                         <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -78,7 +78,7 @@
                         </Grid>
                     </Button>
 
-                    <Button x:Name="Stations" Style="{StaticResource NavigationButton}">
+                    <Button x:Name="Stations" Style="{StaticResource NavigationButton}" Tag="STACJE" Click="NavigationBtn_Click">
                         <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>

@@ -1,0 +1,39 @@
+﻿<Page x:Class="ProjektLAB.TrainService.Pages.StationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1180"
+      Title="StationsPage">
+
+    <Border Background="Gray" CornerRadius="20">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,5,0,5">
+                <Label FontWeight="Bold" Content="Zarządzanie Stacjami" Style="{StaticResource TopLabel}" Grid.Row="0" FontSize="32"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+
+
+
+            </StackPanel>
+
+            <Separator Grid.Row="2" Background="#E8DDB5"/>
+
+
+
+        </Grid>
+
+    </Border>
+</Page>
