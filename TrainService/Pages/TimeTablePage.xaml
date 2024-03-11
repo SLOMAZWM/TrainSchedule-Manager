@@ -39,7 +39,10 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Label Content="Godzina wyjazdu:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
                 <ComboBox x:Name="DepartureHourCB" Style="{StaticResource SelectUser}" />
 
-                
+                <Label Content="Numer Pociągu:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
+                <TextBox x:Name="TrainNumberTxt" Style="{StaticResource InputStyle}" Width="100" Height="25"/>
+
+
                 <!--<Expander Style="{StaticResource CustomExpanderStyle}" Header="Pasażerowie / Ulgi" IsExpanded="True" Grid.Row="2" Margin="10,0,0,0">
                     <StackPanel>
                        
@@ -70,8 +73,20 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
             </StackPanel>
 
             <Separator Grid.Row="2" Background="#E8DDB5"/>
-            
-            
+
+            <DataGrid x:Name="TrainScheduleDataGrid" Grid.Row="3" AutoGenerateColumns="False" Margin="10" Style="{StaticResource CustomDataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Stacja początkowa" Binding="{Binding DepartureStation}" />
+                    <DataGridTextColumn Header="Stacja końcowa" Binding="{Binding ArrivalStation}" />
+                    <DataGridTextColumn Header="Godzina rozpoczęcia" Binding="{Binding ArrivalTime}" />
+                    <DataGridTextColumn Header="Godzina zakończenia" Binding="{Binding DepartureTime}" />
+                    <DataGridTextColumn Header="Opóźnienia" Binding="{Binding DelayTime}" />
+                    <DataGridTextColumn Header="Data wyjazdu" Binding="{Binding DepartureDate}" />
+                    <DataGridTextColumn Header="Przewoźnik" Binding="{Binding Train.Carrier}" />
+                    <DataGridTextColumn Header="Rodzaj pociągu" Binding="{Binding Train.TrainType}" />
+                    <DataGridTextColumn Header="Numer pociągu" Binding="{Binding Train.TrainNumber}" />
+                </DataGrid.Columns>
+            </DataGrid>
 
         </Grid>
 

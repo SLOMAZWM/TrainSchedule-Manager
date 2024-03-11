@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjektLAB.TrainService"
         mc:Ignorable="d"
                  xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="Główne okno aplikacji - SSD" Height="650" Width="1480" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+        Title="Główne okno aplikacji - SSD" Height="650" Width="1380" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
 
     <Border Background="#333333" CornerRadius="30" BorderThickness="1" BorderBrush="#E8DDB5" MouseDown="Border_MouseDown">
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjektLAB.TrainService.Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,12 +44,26 @@ namespace ProjektLAB.TrainService.Pages
             InitializeStations();
             InitializeTime();
             InitializePassengers();
+            InitializeSchedule();
         }
 
         private void InitializePassengers()
         {
 
         }
+
+        private void InitializeSchedule()
+        {
+            var schedules = new List<TrainSchedule>
+    {
+        new TrainSchedule {
+            Train = new Train { TrainNumber = "1234", Carrier = "PKP Intercity", TrainType = "Ekspres" },
+            DepartureStation = "Łódź", ArrivalStation = "Wrocław", DepartureTime = "12:00", ArrivalTime = "10:00", DepartureDate = "12.03.2024", DelayTime = "Brak" },
+    };
+
+            TrainScheduleDataGrid.ItemsSource = schedules;
+        }
+
 
         private void InitializeTime()
         {

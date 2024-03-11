@@ -557,7 +557,7 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Setter Property="Margin" Value="0,5,0,5"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="FontSize" Value="16"/>
-                <!-- Set the ToggleButton style -->
+                
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Expander">
@@ -572,7 +572,7 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 </Setter>
             </Style>
 
-            <!-- Custom style for the NumericUpDown (using MahApps.Metro) -->
+            
             <Style TargetType="{x:Type mah:NumericUpDown}" x:Key="CustomNumericUpDownStyle">
                 <Setter Property="Background" Value="#E8DDB5"/>
                 <Setter Property="Foreground" Value="#121518"/>
@@ -585,12 +585,83 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Setter Property="Height" Value="Auto"/>
             </Style>
 
-            <!-- Custom style for TextBlock used as a label inside Expander -->
+            
             <Style TargetType="TextBlock" x:Key="CustomTextBlockStyle">
                 <Setter Property="Foreground" Value="#121518"/>
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Margin" Value="0,5,10,5"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="DataGrid" x:Key="CustomDataGridStyle">
+                <Setter Property="CanUserAddRows" Value="False"/>
+                <Setter Property="CanUserDeleteRows" Value="False"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Foreground" Value="#121518"/>
+                <Setter Property="BorderBrush" Value="#E8DDB5"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="RowBackground" Value="#E8E8E8"/>
+                <Setter Property="AlternatingRowBackground" Value="#F8F8F8"/>
+                <Setter Property="GridLinesVisibility" Value="None"/>
+                <Setter Property="HorizontalGridLinesBrush" Value="#E0E0E0"/>
+                <Setter Property="VerticalGridLinesBrush" Value="#E0E0E0"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="HeadersVisibility" Value="Column"/>
+                <Setter Property="ColumnHeaderHeight" Value="40"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="CellStyle">
+                    <Setter.Value>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Padding" Value="10,2"/>
+                            <Setter Property="Foreground" Value="#121518"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="Background" Value="#D3D3D3"/>
+                <Setter Property="Foreground" Value="#121518"/>
+                <Setter Property="BorderBrush" Value="#E8DDB5"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Padding" Value="10,2"/>
+                <Setter Property="Height" Value="40"/>
+            </Style>
+
+            <Style TargetType="TextBox" x:Key="InputStyle" BasedOn="{StaticResource Input}">
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBoxBase">
+                            <Border x:Name="border" CornerRadius="5" Background="{TemplateBinding Background}" SnapsToDevicePixels="True"
+      BorderThickness="1" BorderBrush="#E8DDB5">
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="#C6BB93" TargetName="border"/>
+                                </Trigger>
+
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter Property="BorderBrush" Value="#C6BB93" TargetName="border"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
         </ResourceDictionary>
