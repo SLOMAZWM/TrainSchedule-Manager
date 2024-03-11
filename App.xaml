@@ -673,6 +673,18 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 </Setter>
             </Style>
 
+            <Style TargetType="TextBlock" x:Key="UserInformation">
+                <Setter Property="Foreground" Value="#E8DDB5"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontFamily" Value="Ebrima"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Style>
+
+            <Style TargetType="TextBlock" x:Key="UserAdditionalInformation" BasedOn="{StaticResource UserInformation}">
+                <Setter Property="Foreground" Value="#121518"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+
         </ResourceDictionary>
 
     </Application.Resources>

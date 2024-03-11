@@ -23,13 +23,29 @@
 
             </StackPanel>
 
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderThickness="1" BorderBrush="#E8DDB5" CornerRadius="20" Padding="15" Width="300">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Imię i nazwisko" x:Name="Name" HorizontalAlignment="Center" Style="{StaticResource UserInformation}"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Godzina rozpoczęcia: " Style="{StaticResource UserAdditionalInformation}"/>
+                            <TextBlock x:Name="TimeStart" Text="czas" Style="{StaticResource UserAdditionalInformation}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Godzina zakończenia: " Style="{StaticResource UserAdditionalInformation}"/>
+                            <TextBlock x:Name="TimeEnd" Text="czas" Style="{StaticResource UserAdditionalInformation}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
 
             
 
             </StackPanel>
 
-            <Separator Grid.Row="2" Background="#E8DDB5"/>
+            <Separator Grid.Row="2" Background="#E8DDB5" Margin="0,5,0,0"/>
 
 
 
