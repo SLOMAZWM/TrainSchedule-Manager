@@ -622,6 +622,8 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                             <Setter Property="Padding" Value="10,2"/>
                             <Setter Property="Foreground" Value="#121518"/>
                             <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </Setter.Value>
                 </Setter>
@@ -636,7 +638,10 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Padding" Value="10,2"/>
                 <Setter Property="Height" Value="40"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
+
 
             <Style TargetType="TextBox" x:Key="InputStyle" BasedOn="{StaticResource Input}">
                 <Setter Property="Background" Value="Gray"/>
