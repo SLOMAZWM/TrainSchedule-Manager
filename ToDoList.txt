@@ -1,6 +1,4 @@
 ﻿
-
-
 FUNKCJONALNOŚCI:
 
 -Wyszukiwanie polaczen, informacje o przesiadkach (w tym czas przesiadek, perony)
