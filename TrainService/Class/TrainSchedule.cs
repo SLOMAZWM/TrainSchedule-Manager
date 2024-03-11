@@ -11,8 +11,8 @@ namespace ProjektLAB.TrainService.Class
         public Train ? Train { get; set; }
         public string ? DepartureStation { get; set; }
         public string ? ArrivalStation { get; set; }
-        public string ? DepartureTime { get; set; }
-        public string ? ArrivalTime { get; set; }
+        public string ? StartTime { get; set; }
+        public string ? EndTime { get; set; }
         public string ? DepartureDate { get; set; }
         public string? DelayTime { get; set; }
     }

@@ -78,8 +78,8 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Stacja początkowa" Binding="{Binding DepartureStation}" />
                     <DataGridTextColumn Header="Stacja końcowa" Binding="{Binding ArrivalStation}" />
-                    <DataGridTextColumn Header="Godzina rozpoczęcia" Binding="{Binding ArrivalTime}" />
-                    <DataGridTextColumn Header="Godzina zakończenia" Binding="{Binding DepartureTime}" />
+                    <DataGridTextColumn Header="Godzina rozpoczęcia" Binding="{Binding StartTime}" />
+                    <DataGridTextColumn Header="Godzina zakończenia" Binding="{Binding EndTime}" />
                     <DataGridTextColumn Header="Opóźnienia" Binding="{Binding DelayTime}" />
                     <DataGridTextColumn Header="Data wyjazdu" Binding="{Binding DepartureDate}" />
                     <DataGridTextColumn Header="Przewoźnik" Binding="{Binding Train.Carrier}" />
