@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjektLAB.TrainService.Class;
+using ProjektLAB.TrainService.Class.ServiceClass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,21 @@ namespace ProjektLAB.TrainService.Pages
     /// </summary>
     public partial class StationsPage : Page
     {
+        private List<Station> stations = new List<Station>();
+
         public StationsPage()
         {
             InitializeComponent();
+            stations = StationServiceDataBase.InitializeMainStationsFromDataBase();
+            InitializeStationsToSelect();
+        }
+
+        private void InitializeStationsToSelect()
+        {
+            foreach(Station station in stations) 
+            { 
+                SelectStationCB.Items.Add(station.Name);
+            }
         }
     }
 }

@@ -25,13 +25,55 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
 
-
+                <Label Style="{StaticResource NavigationTopLabel}" Content="Wybierz stację:" FontSize="20"/>
+                <ComboBox Name="SelectStationCB" Style="{StaticResource SelectUser}" Width="140"/>
 
             </StackPanel>
 
             <Separator Grid.Row="2" Background="#E8DDB5"/>
 
+            <Grid Grid.Row="3">
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" BorderBrush="#E8DDB5" BorderThickness="0,0,1,0">
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="324" Width="182">
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <TextBlock Text="Liczba peronów: " Style="{StaticResource UserInformation}" Width="120"/>
+                            <TextBlock Name="AmountOfPlatforms" Text="3" Style="{StaticResource UserInformation}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <TextBlock Text="Liczba torów: " Style="{StaticResource UserInformation}" Width="120"/>
+                            <TextBlock Name="AmountOfTracks" Text="6" Style="{StaticResource UserInformation}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            
+                            <Button Style="{StaticResource LogicButton}" Background="Green">
+                                <Label Content="Dodaj przejazd" Style="{StaticResource LabelButton}"/>
+                            </Button>
+
+                            <Button Style="{StaticResource LogicButton}" Background="YellowGreen">
+                                <Label Content="Edytuj przejazd" Style="{StaticResource LabelButton}"/>
+                            </Button>
+
+                            <Button Style="{StaticResource LogicButton}" Background="DarkRed">
+                                <Label Content="Usuń przejazd" Style="{StaticResource LabelButton}"/>
+                            </Button>
+
+                        </StackPanel>
+
+                    </StackPanel>
+                    
+                </Border>
+
+            </Grid>
 
         </Grid>
 

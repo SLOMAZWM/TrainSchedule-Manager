@@ -1,4 +1,7 @@
-﻿
+﻿Zrobić przejazd z Lodzi do Opola i z Opola do Lodzi
+Zrobić przejazd z Lodzi do Wroclawia i z Wroclawia do Lodzi
+
+
 FUNKCJONALNOŚCI:
 
 -Wyszukiwanie polaczen, informacje o przesiadkach (w tym czas przesiadek, perony)
