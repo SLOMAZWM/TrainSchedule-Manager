@@ -57,11 +57,11 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                 byte stationNumberIndexEnd = Convert.ToByte(EndStationCB.SelectedIndex);
                 switch(stationNumberIndexStart)
                 {
-                    case 0:
+                    case 0: // OPOLE GŁÓWNE
                         {
                             switch(stationNumberIndexEnd)
                             {
-                                case 0: // the same station choices
+                                case 0:
                                     {
                                         MessageBox.Show($"Nie można dodać trasy z {StartStationCB.SelectedItem} do {EndStationCB.SelectedItem}", "Błąd wyboru", MessageBoxButton.OK, MessageBoxImage.Error);
                                         break;
@@ -71,19 +71,86 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                                         string StartStation = StartStationCB.SelectedItem.ToString()!;
                                         string EndStation = EndStationCB.SelectedItem.ToString()!;
                                         Route fromOpoleToWroclaw = new Route();
+                                        fromOpoleToWroclaw = fromOpoleToWroclaw.FromOpoleToWroclaw();
                                         trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromOpoleToWroclaw, StartStation, EndStation));
+                                        this.Close();
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        string StartStation = StartStationCB.SelectedItem.ToString()!;
+                                        string EndStation = EndStationCB.SelectedItem.ToString()!;
+                                        Route fromOpoleToLodz = new Route();
+                                        fromOpoleToLodz = fromOpoleToLodz.FromOpoleToLodz();
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromOpoleToLodz, StartStation, EndStation));
                                         this.Close();
                                         break;
                                     }
                             }
                             break;
                         }
-                    case 1:
+                    case 1: //WROCŁAW GŁÓWNY
                         {
+                            switch(stationNumberIndexEnd)
+                            {
+                                case 0:
+                                    {
+                                        string StartStation = StartStationCB.SelectedItem.ToString()!;
+                                        string EndStation = EndStationCB.SelectedItem.ToString()!;
+                                        Route fromWroclawToOpole = new Route();
+                                        fromWroclawToOpole = fromWroclawToOpole.FromWroclawToOpole();
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromWroclawToOpole, StartStation, EndStation));
+                                        this.Close();
+                                        break;
+                                    }
+                                case 1:
+                                    {
+                                        MessageBox.Show($"Nie można dodać trasy z {StartStationCB.SelectedItem} do {EndStationCB.SelectedItem}", "Błąd wyboru", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        string StartStation = StartStationCB.SelectedItem.ToString()!;
+                                        string EndStation = EndStationCB.SelectedItem.ToString()!;
+                                        Route fromWroclawToLodz = new Route();
+                                        fromWroclawToLodz = fromWroclawToLodz.FromWroclawToLodzWidzew();
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromWroclawToLodz, StartStation, EndStation));
+                                        this.Close();
+                                        break;
+                                    }
+                            }
                             break;
                         }
-                    case 2:
+                    case 2: //ŁÓDŹ
                         {
+                            switch(stationNumberIndexEnd)
+                            {
+                                case 0:
+                                    {
+                                        string StartStation = StartStationCB.SelectedItem.ToString()!;
+                                        string EndStation = EndStationCB.SelectedItem.ToString()!;
+                                        Route fromLodzToOpole = new Route();
+                                        fromLodzToOpole = fromLodzToOpole.FromLodzToOpole();
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromLodzToOpole, StartStation, EndStation));
+                                        this.Close();
+                                        break;
+                                    }
+                                case 1:
+                                    {
+                                        string StartStation = StartStationCB.SelectedItem.ToString()!;
+                                        string EndStation = EndStationCB.SelectedItem.ToString()!;
+                                        Route fromLodzToWroclaw = new Route();
+                                        fromLodzToWroclaw = fromLodzToWroclaw.FromLodzWidzewToWroclawGlowny();
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromLodzToWroclaw, StartStation, EndStation));
+                                        this.Close();
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        MessageBox.Show($"Nie można dodać trasy z {StartStationCB.SelectedItem} do {EndStationCB.SelectedItem}", "Błąd wyboru", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        break;
+                                    }
+                            }
                             break;
                         }
                 }

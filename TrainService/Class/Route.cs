@@ -92,7 +92,7 @@ namespace ProjektLAB.TrainService.Class
         { "CZĘSTOCHOWA STRADOM", 4 },
         { "CZĘSTOCHOWA", 5 },
         { "KOLUSZKI", 6 },
-        { "ŁÓDŹ FABRYCZNA", 7 }
+        { "ŁÓDŹ WIDZEW", 7 }
     };
 
             foreach (Station station in Stations)
@@ -119,7 +119,7 @@ namespace ProjektLAB.TrainService.Class
 
             Dictionary<string, int> stationOrder = new Dictionary<string, int>
     {
-        { "ŁÓDŹ FABRYCZNA", 1 },
+        { "ŁÓDŹ WIDZEW", 1 },
         { "KOLUSZKI", 2 },
         { "CZĘSTOCHOWA", 3 },
         { "CZĘSTOCHOWA STRADOM", 4 },

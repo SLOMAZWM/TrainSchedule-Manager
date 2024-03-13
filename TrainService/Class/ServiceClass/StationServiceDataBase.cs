@@ -17,7 +17,7 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT Name FROM Stations WHERE StationID IN (2, 11, 5);";
+                string query = "SELECT Name FROM Stations WHERE StationID IN (2, 25, 5);";
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {

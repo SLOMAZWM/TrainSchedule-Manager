@@ -46,7 +46,6 @@ namespace ProjektLAB.TrainService.Pages
         {
             WhichStationsDialog user_Choice = new WhichStationsDialog(trainService);
             user_Choice.ShowDialog();
-
         }
     }
 }

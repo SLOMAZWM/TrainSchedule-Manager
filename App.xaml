@@ -614,7 +614,7 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Setter Property="VerticalAlignment" Value="Stretch"/>
                 <Setter Property="HeadersVisibility" Value="Column"/>
                 <Setter Property="ColumnHeaderHeight" Value="40"/>
-                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"/>
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
                 <Setter Property="CellStyle">
                     <Setter.Value>
