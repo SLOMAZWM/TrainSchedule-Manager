@@ -21,18 +21,23 @@ namespace ProjektLAB.TrainService
     public partial class TrainServiceWindow : Window
     {
         public User? User { get; set; }
-        private Dictionary<string, Page> PageDictionary = new Dictionary<string, Page>()
-{
-            { "STRONA GŁÓWNA", new HomePage()},
-            {"ROZKŁAD JAZDY", new TimeTablePage()},
-            {"HARMONOGRAM", new SchedulePage() },
-            {"STACJE", new StationsPage() },
-    };
+        private Dictionary<string, Page> PageDictionary;
 
         public TrainServiceWindow(User loggedUser)
         {
             InitializeComponent();
             User = loggedUser;
+        PageDictionary = InitializePage();
+        }
+
+        private Dictionary<string, Page> InitializePage()
+        {
+            Dictionary<string, Page> pages = new Dictionary<string, Page>();
+            pages.Add("STRONA GŁÓWNA", new HomePage());
+            pages.Add("ROZKŁAD JAZDY", new TimeTablePage());
+            pages.Add("HARMONOGRAM", new SchedulePage());
+            pages.Add("STACJE", new StationsPage(this));
+            return pages;
         }
 
         public TrainServiceWindow() //Guest Login
@@ -40,6 +45,7 @@ namespace ProjektLAB.TrainService
             InitializeComponent();
             User = null;
             //InitializeGuestLogin();
+            PageDictionary = InitializePage();
         }
 
         private void InitializeGuestLogin()
@@ -65,7 +71,7 @@ namespace ProjektLAB.TrainService
             if (sender is Button button && button.Tag is string pageKey)
             {
                 Page pageToNavigate;
-                if (PageDictionary.TryGetValue(pageKey, out pageToNavigate))
+                if (PageDictionary.TryGetValue(pageKey, out pageToNavigate!))
                  { 
                     ContentFrame.Navigate(pageToNavigate);
                     TitleLbl.Content = pageKey;

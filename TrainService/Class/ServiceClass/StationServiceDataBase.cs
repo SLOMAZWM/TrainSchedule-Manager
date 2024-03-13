@@ -45,7 +45,7 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT Name, Latitude, Longitude FROM Stations;";
+                string query = "SELECT Name FROM Stations;";
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {

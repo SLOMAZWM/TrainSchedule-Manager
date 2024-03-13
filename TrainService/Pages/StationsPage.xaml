@@ -55,7 +55,7 @@
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                             
-                            <Button Style="{StaticResource LogicButton}" Background="Green">
+                            <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Click="AddRideBtn_Click">
                                 <Label Content="Dodaj przejazd" Style="{StaticResource LabelButton}"/>
                             </Button>
 

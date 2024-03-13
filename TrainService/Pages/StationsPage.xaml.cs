@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProjektLAB.TrainService.Pages.DialogWindow;
 
 namespace ProjektLAB.TrainService.Pages
 {
@@ -22,13 +23,15 @@ namespace ProjektLAB.TrainService.Pages
     /// </summary>
     public partial class StationsPage : Page
     {
+        private TrainServiceWindow trainService;
         private List<Station> stations = new List<Station>();
 
-        public StationsPage()
+        public StationsPage(TrainServiceWindow trainS)
         {
             InitializeComponent();
             stations = StationServiceDataBase.InitializeMainStationsFromDataBase();
             InitializeStationsToSelect();
+            trainService = trainS;
         }
 
         private void InitializeStationsToSelect()
@@ -37,6 +40,13 @@ namespace ProjektLAB.TrainService.Pages
             { 
                 SelectStationCB.Items.Add(station.Name);
             }
+        }
+
+        private void AddRideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WhichStationsDialog user_Choice = new WhichStationsDialog(trainService);
+            user_Choice.ShowDialog();
+
         }
     }
 }
