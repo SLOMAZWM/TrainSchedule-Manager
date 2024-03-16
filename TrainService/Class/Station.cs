@@ -12,7 +12,11 @@ namespace ProjektLAB.TrainService.Class
 {
     public class Station
     {
-        public string ? Name { get; set; }
-        public Dictionary<int, List<int>> ? PlatformToTracks {  get; set; }
+        public int StationID { get; set; }
+        public string? Name { get; set; }
+        public string? ArrivalTime { get; set; }
+        public string? DepartureTime { get; set; }
+        public int? PlatformNumber { get; set; }
+        public int? TrackNumber { get; set; }
     }
 }

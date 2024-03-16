@@ -45,7 +45,7 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT Name FROM Stations;";
+                string query = "SELECT StationID, Name, ArrivalTime, DepartureTime, PlatformNumber, TrackNumber FROM Stations WHERE ArrivalTime IS NULL AND DepartureTime IS NULL;";
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -55,7 +55,12 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
                         {
                             stations.Add(new Station
                             {
+                                StationID = (int)reader["StationID"],
                                 Name = reader["Name"].ToString(),
+                                ArrivalTime = reader["ArrivalTime"].ToString(),
+                                DepartureTime = reader["DepartureTime"].ToString(),
+                                PlatformNumber = reader["PlatformNumber"] as int?,
+                                TrackNumber = reader["TrackNumber"] as int?
                             });
                         }
                     }
@@ -64,6 +69,7 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
 
             return stations;
         }
+
 
     }
 }

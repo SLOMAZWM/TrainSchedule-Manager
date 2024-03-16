@@ -47,5 +47,24 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
             selectTrain.ShowDialog();
         }
 
+        private void RouteListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void SeeDetailsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(StartTimeTextBox.Text == "Liczba" || StartTimeTextBox.Text == string.Empty && EndTimeTextBox.Text == "Liczba" || EndTimeTextBox.Text == string.Empty)
+            {
+                MessageBox.Show("Wypełnij datę rozpoczęcia, lub zakończenia kursu!", "Błąd wypełnienia", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                TimeSpan StartTime = TimeSpan.Parse(StartTimeTextBox.Text);
+                TimeSpan EndTime = TimeSpan.Parse(EndTimeTextBox.Text);
+                DetailStationDialog detailStationDialog = new DetailStationDialog(newRoute, StartTime, EndTime);
+                detailStationDialog.ShowDialog();
+            }
+        }
     }
 }

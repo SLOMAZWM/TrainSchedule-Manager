@@ -43,5 +43,29 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
         {
             this.Close();
         }
+
+        private void AddTrainBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Train selectedItem = (Train)TrainDataGrid.SelectedItem;
+            if(selectedItem != null) 
+            {
+                string SelectedTrainNumber = selectedItem.TrainNumber!;
+                selectedItem = TrainServiceDataBase.GetTrainInfo(SelectedTrainNumber);
+
+                routePage.TrainNumberLbl.Content = selectedItem.TrainNumber;
+                routePage.CarrierLbl.Content = selectedItem.Carrier;
+                routePage.TrainTypeLbl.Content = selectedItem.TrainType;
+                routePage.NumberOfSeatsLbl.Content = selectedItem.NumberOfSeats;
+                routePage.MaxSpeedLbl.Content = selectedItem.MaxSpeed;
+                routePage.CompartmentCarLbl.Content = selectedItem.CompartmentCar;
+                routePage.OpenCarLbl.Content = selectedItem.OpenCar;
+                routePage.SleepingCarLbl.Content = selectedItem.SleepingCar;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Wybierz pociąg z podanej listy!", "Błąd wyboru", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

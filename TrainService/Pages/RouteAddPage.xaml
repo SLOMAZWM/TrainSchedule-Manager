@@ -39,40 +39,53 @@
             <Grid Grid.Row="3">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0" BorderBrush="#E8DDB5" BorderThickness="0,0,1,0">
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" Height="324" Width="182">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" Width="300">
 
                         <Label Content="Informacje o przejeździe" FontSize="16" Style="{StaticResource NavigationTopLabel}"/>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="Liczba stacji:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="160"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Liczba stacji:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="145"/>
                             <Label x:Name="AmountOfStationsLbl" Content="0" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <Label Content="Liczba przesiadek:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="160"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                            <Label Content="Liczba przesiadek:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="145"/>
                             <Label Content="0" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Label Content="Godzina Rozpoczęcia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
-                            <TextBox Text="Liczba" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
+                            <TextBox x:Name="StartTimeTextBox" Text="Liczba" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Label Content="Godzina Zakończenia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
-                            <TextBox Text="Liczba" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
+                            <TextBox x:Name="EndTimeTextBox" Text="Liczba" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
+                        <Label Content="Informacje o wybranej stacji" FontSize="16" Style="{StaticResource NavigationTopLabel}" Margin="0,5,0,0"/>
 
-                            <Button Style="{StaticResource LogicButton}" Background="DarkGreen" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Liczba peronów:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="145"/>
+                            <Label Content="0" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Liczba torów:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="145"/>
+                            <Label Content="0" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,80,0,0">
+
+                            <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Click="SeeDetailsBtn_Click" >
                                 <StackPanel Orientation="Horizontal" >
                                     <Icon:PackIconMaterial Kind="FileSettings" Margin="0,7,2,0"/>
                                     <Label Content="Zobacz szczegóły" Style="{StaticResource LabelButton}"/>
@@ -94,31 +107,51 @@
 
                 <Border Grid.Column="2" BorderBrush="#E8DDB5" BorderThickness="1,0,0,0">
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" Height="324" Width="182">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300">
 
-                        <Label Content="Informacje o pociągach" FontSize="16" Style="{StaticResource NavigationTopLabel}"/>
+                        <Label Content="Informacje o pociągach" FontSize="16" Style="{StaticResource NavigationTopLabel}" HorizontalAlignment="Center"/>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="Numer pociągu:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="146"/>
-                            <Label Content="Liczba" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Typ pociągu:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="150"/>
+                            <Label x:Name="TrainTypeLbl" Content="Nazwa" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="Nazwa przewoźnika:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="146"/>
-                            <Label Content="Nazwa" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Nazwa przewoźnika:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="150"/>
+                            <Label x:Name="CarrierLbl" Content="Nazwa" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="Liczba całkowitych miejsc:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="146"/>
-                            <Label Content="Liczba" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Numer pociągu:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="150"/>
+                            <Label x:Name="TrainNumberLbl" Content="Liczba" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="Prędkość Maksymalna:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="146"/>
-                            <Label Content="Liczba" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Liczba całkowitych miejsc:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="150"/>
+                            <Label x:Name="NumberOfSeatsLbl" Content="Liczba" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,53,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Prędkość maksymalna:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="150"/>
+                            <Label x:Name="MaxSpeedLbl" Content="Liczba" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Przedziałowe wagony:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="150"/>
+                            <Label x:Name="CompartmentCarLbl" Content="TAK/NIE" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Bezprzedziałowe wagony:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="150"/>
+                            <Label x:Name="OpenCarLbl" Content="TAK/NIE" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Przedziały z łóźkami:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="150"/>
+                            <Label x:Name="SleepingCarLbl" Content="TAK/NIE" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,85,0,0">
 
                             <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Click="LoadTrainBtn_Click">
                                 <StackPanel Orientation="Horizontal" >
@@ -142,12 +175,11 @@
 
                 <Grid Grid.Column="1">
 
-                    <ListBox x:Name="RouteListBox" Height="350" VerticalAlignment="Top" Margin="10,10,10,0">
+                    <ListBox x:Name="RouteListBox" Height="350" VerticalAlignment="Top" Margin="10,10,10,0" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="RouteListBox_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Name}" />
-                                    <!-- Tutaj możesz dodać więcej właściwości stacji -->
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

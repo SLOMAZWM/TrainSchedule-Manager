@@ -18,7 +18,10 @@ c) rodzaj wagonow
 
 3 stacje = Opole, Wrocław, Łódź, rozni przewoznicy
 
+Aktualne zadanie:
 
+Dokonczyc DetailStationDialog, DetailStationPage, DetailStationControl (backend) + front
+Wyswietlac trasy, w rozkladzie jazdy - poprawic klasy podrzedne
 
 LISTA KOLOROW:
 

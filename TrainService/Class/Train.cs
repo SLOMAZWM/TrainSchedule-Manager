@@ -17,5 +17,6 @@ namespace ProjektLAB.TrainService.Class
         public bool? CompartmentCar { get; set; }
         public bool? OpenCar { get; set; } 
         public bool? SleepingCar { get; set; } 
+        public int ? MaxSpeed { get; set; }
     }
 }

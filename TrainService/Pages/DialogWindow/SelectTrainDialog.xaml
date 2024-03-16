@@ -26,17 +26,29 @@
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Vertical" Grid.Row="1">
 
-                <DataGrid x:Name="TrainDataGrid" Style="{StaticResource CustomDataGridStyle}" AutoGenerateColumns="False" Width="975">
+                <DataGrid x:Name="TrainDataGrid" Style="{StaticResource CustomDataGridStyle}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Numer Pociągu" Binding="{Binding TrainNumber}" Width="auto"/>
-                        <DataGridTextColumn Header="Przewoźnik" Binding="{Binding Carrier}" Width="auto"/>
-                        <DataGridTextColumn Header="Typ Pociągu" Binding="{Binding TrainType}" Width="auto"/>
-                        <DataGridTextColumn Header="Liczba miejsc (siedzących)" Binding="{Binding NumberOfSeats}" Width="auto"/>
-                        <DataGridTextColumn Header="Przedziałowe wagony" Binding="{Binding CompartmentCar}" Width="auto"/>
-                        <DataGridTextColumn Header="Bezprzedziałowe wagony" Binding="{Binding OpenCar}" Width="auto"/>
-                        <DataGridTextColumn Header="Przedziały z łóżkami" Binding="{Binding SleepingCar}" Width="auto"/>
+                        <DataGridTextColumn Header="Numer Pociągu" Binding="{Binding TrainNumber}" />
+                        <DataGridTextColumn Header="Przewoźnik" Binding="{Binding Carrier}" />
+                        <DataGridTextColumn Header="Typ Pociągu" Binding="{Binding TrainType}" />
+                        <DataGridTextColumn Header="Liczba miejsc (siedzących)" Binding="{Binding NumberOfSeats}" />
+                        <DataGridTextColumn Header="Przedziałowe wagony" Binding="{Binding CompartmentCar}" />
+                        <DataGridTextColumn Header="Bezprzedziałowe wagony" Binding="{Binding OpenCar}" />
+                        <DataGridTextColumn Header="Przedziały z łóżkami" Binding="{Binding SleepingCar}" />
                     </DataGrid.Columns>
                 </DataGrid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,10,0,10">
+
+                <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Click="AddTrainBtn_Click" Margin="0">
+                    <Label Content="Dodaj pociąg" Style="{StaticResource LabelButton}"/>
+                </Button>
+
+                <Button Style="{StaticResource LogicButton}" Background="DarkRed" Margin="10,0,0,0">
+                    <Label Content="Anuluj" Style="{StaticResource LabelButton}"/>
+                </Button>
 
             </StackPanel>
 
