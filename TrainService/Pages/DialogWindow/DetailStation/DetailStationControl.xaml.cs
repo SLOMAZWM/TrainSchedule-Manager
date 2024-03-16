@@ -21,10 +21,19 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow.DetailStation
     /// </summary>
     public partial class DetailStationControl : UserControl
     {
+        private Station _station;
         public DetailStationControl(Station station)
         {
             InitializeComponent();
+            _station = station;
             this.DataContext = station;
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _station.ArrivalTime = ArrivalTimeTextBox.Text;
+            _station.DepartureTime = DepartureTimeTextBox.Text;
+            MessageBox.Show("Zapisano zmiany.");
         }
     }
 }

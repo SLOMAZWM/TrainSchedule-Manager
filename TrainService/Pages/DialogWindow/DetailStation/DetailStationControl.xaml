@@ -5,14 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages.DialogWindow.DetailStation"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="600">
-    <Border Background="Gray" BorderThickness="1" BorderBrush="Black" CornerRadius="20">
+                     xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+
+             d:DesignHeight="300" d:DesignWidth="700">
+    <Border Background="Gray">
         <Grid>
         <StackPanel>
-            <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16"/>
-            <TextBox x:Name="ArrivalTimeTextBox" />
-            <TextBox x:Name="DepartureTimeTextBox" />
-            <!-- Możesz dodać więcej elementów interfejsu użytkownika w zależności od potrzeb -->
+            <Label Content="{Binding Name}" FontWeight="Bold" FontSize="32" Style="{StaticResource TopLabel}" Margin="10"/>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock x:Name="ArrivalTimeTextBox" Text="Godzina przyjazdu:" Style="{StaticResource TextInput}" Width="200" Margin="10,13,0,0"/>
+                    <TextBox Style="{StaticResource Input}" Width="150"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
+                    <TextBlock x:Name="DepartureTimeTextBox" Text="Godzina odjazdu:" Style="{StaticResource TextInput}" Width="200" Margin="10,13,0,0"/>
+                    <TextBox Style="{StaticResource Input}" Width="150"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,40,0,0">
+                    <Button Style="{StaticResource LogicButton}" Margin="0" Click="SaveBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="ContentSaveCheck" Margin="0,2,15,0"/>
+                            <TextBlock Text="Zapisz Godziny"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource LogicButton}" Margin="10,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Cancel" Margin="0,2,15,0"/>
+                            <TextBlock Text="Anuluj Zmiany"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                
         </StackPanel>
     </Grid>
     </Border>

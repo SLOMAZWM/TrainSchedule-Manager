@@ -63,6 +63,11 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                 TimeSpan StartTime = TimeSpan.Parse(StartTimeTextBox.Text);
                 TimeSpan EndTime = TimeSpan.Parse(EndTimeTextBox.Text);
                 DetailStationDialog detailStationDialog = new DetailStationDialog(newRoute, StartTime, EndTime);
+                detailStationDialog.OnStationsUpdated = (updatedStations) =>
+                {
+                    newRoute.Stations = updatedStations;
+                    RouteListBox.ItemsSource = newRoute.Stations;
+                };
                 detailStationDialog.ShowDialog();
             }
         }

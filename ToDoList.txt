@@ -21,6 +21,8 @@ c) rodzaj wagonow
 Aktualne zadanie:
 
 Dokonczyc DetailStationDialog, DetailStationPage, DetailStationControl (backend) + front
+Dodac logike zapisywania do listy w RouteAddPage - po ponownym uruchomieniu "Zobacz szczegoly", wczytaj wczesniej zapisane godziny.
+Po kliknieciu zapisz trase, dodaj sprawdzanie pociagu, godzin przystankow, oraz godzin rozpoczecia, zakonczenia - dodaj do bazy danych nowe rekordy, powiaz dane.
 Wyswietlac trasy, w rozkladzie jazdy - poprawic klasy podrzedne
 
 LISTA KOLOROW:

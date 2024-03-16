@@ -22,10 +22,12 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
     public partial class DetailStationDialog : Window
     {
         public List<Station> StationsList {get; set;}
+        private Dictionary<int, DetailStationControl> _paginationControls = new Dictionary<int, DetailStationControl>();
         private TimeSpan StartTime;
         private TimeSpan EndTime;
         private int currentPageIndex = 0;
-        
+        public Action<List<Station>> ?OnStationsUpdated;
+
         public DetailStationDialog(Route route, TimeSpan StartT, TimeSpan EndT)
         {
             InitializeComponent();
@@ -37,34 +39,36 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
 
         private void InitializePagination()
         {
+            PaginationItemsControl.ItemsSource = Enumerable.Range(1, StationsList.Count);
+
             for (int i = 0; i < StationsList.Count; i++)
             {
-                Button pageButton = new Button()
-                {
-                    Content = (i + 1).ToString(),
-                    Tag = i
-                };
-                pageButton.Click += PageButton_Click;
-                PaginationItemsControl.ItemsSource = Enumerable.Range(1, StationsList.Count);
-                Style = (Style)this.Resources["pagingButton"];
+               
+                var stationControl = new DetailStationControl(StationsList[i]);
+
+
+                _paginationControls.Add(i, stationControl);
             }
 
+           
             UpdateFrameContent(0);
         }
 
         private void PageButton_Click(object sender, RoutedEventArgs e) 
-        { 
-            if (sender is Button button)
+        {
+            if (sender is Button button && int.TryParse(button.Content.ToString(), out int pageIndex))
             {
-                currentPageIndex = Convert.ToInt32(button.Content) - 1;
+                currentPageIndex = pageIndex - 1;
                 UpdateFrameContent(currentPageIndex);
             }
         }
 
         private void UpdateFrameContent(int PageIndex) 
         {
-            var station = StationsList[PageIndex];
-            StationDetailFrame.Content = new DetailStationControl(station);
+            if (_paginationControls.TryGetValue(PageIndex, out var control))
+            {
+                StationDetailFrame.Content = control;
+            }
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
@@ -75,6 +79,11 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
         private void MouseDown_Click(object sender, RoutedEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void SaveAllChanges_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
