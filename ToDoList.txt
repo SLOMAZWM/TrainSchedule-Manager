@@ -16,9 +16,6 @@ c) rodzaj wagonow
 
 Aktualne zadanie:
 
-Stworz wyswietlanie rozkladu jazdy
-a) zaplanuj klase, baze danych
-b) wyszukiwarka
 c) szczegolowe informacje
 
 

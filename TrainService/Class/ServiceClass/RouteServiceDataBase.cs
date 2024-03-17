@@ -114,6 +114,9 @@ VALUES (@TrainID, @RouteID, @DelayTime);";
             }
         }
 
+        private static void GetAllInformation(SqlConnection connection, SqlTransaction transaction, int trainID, int routeID, int TrainScheduleID)
+        {
 
+        }
     }
 }
