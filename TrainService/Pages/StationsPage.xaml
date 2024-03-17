@@ -53,15 +53,15 @@
                             <TextBlock Name="AmountOfTracks" Text="6" Style="{StaticResource UserInformation}"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
                             
                             <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Click="AddRideBtn_Click">
                                 <Label Content="Dodaj przejazd" Style="{StaticResource LabelButton}"/>
                             </Button>
 
-                            <Button Style="{StaticResource LogicButton}" Background="YellowGreen">
+                            <!--<Button Style="{StaticResource LogicButton}" Background="YellowGreen">
                                 <Label Content="Edytuj przejazd" Style="{StaticResource LabelButton}"/>
-                            </Button>
+                            </Button>-->
 
                             <Button Style="{StaticResource LogicButton}" Background="DarkRed">
                                 <Label Content="Usuń przejazd" Style="{StaticResource LabelButton}"/>

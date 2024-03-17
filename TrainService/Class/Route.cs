@@ -10,6 +10,9 @@ namespace ProjektLAB.TrainService.Class
     public class Route
     {
         public int RouteID { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public DateTime StartDate { get; set; }
         public List<Station> Stations { get; set; } = new List<Station>();
 
         public Route()

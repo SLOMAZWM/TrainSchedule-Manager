@@ -12,19 +12,50 @@ a) typ pociagu
 b) nr pociagu
 c) rodzaj wagonow
 
-6. Czasy przesiadek
-
-7. Dodawanie nowych tras jako pracownicy - napraw trainDataGrid - nowy styl?
-
-3 stacje = Opole, Wrocław, Łódź, rozni przewoznicy
+6. Dodawanie nowych tras jako pracownicy
 
 Aktualne zadanie:
 
-Dokonczyc DetailStationDialog, DetailStationPage, DetailStationControl (backend) + front
-Dodac logike zapisywania do listy w RouteAddPage - po ponownym uruchomieniu "Zobacz szczegoly", wczytaj wczesniej zapisane godziny.
-Po kliknieciu zapisz trase, dodaj sprawdzanie pociagu, godzin przystankow, oraz godzin rozpoczecia, zakonczenia - dodaj do bazy danych nowe rekordy, powiaz dane.
-Wyswietlac trasy, w rozkladzie jazdy - poprawic klasy podrzedne
+Stworz wyswietlanie rozkladu jazdy
+a) zaplanuj klase, baze danych
+b) wyszukiwarka
+c) szczegolowe informacje
+
 
 LISTA KOLOROW:
 
 https://coolors.co/333333-666a86-95b8d1-e8ddb5-edafb8
+
+
+
+
+
+
+
+
+
+
+
+
+
+Błędy:
+
+Po ponownym uruchomieniu okna szczegolow, trzeba wybrac platforme by uruchomic dostep do wybierania torow
+
+
+Walidacja dla logiki przejazdu (nastepny przystanek, nie moze byc wczesniej niz poprzedni)
+Walidacja dla start/zakonczenie (zakonczenie nie moze byc wczesniej niz start)
+napraw trainDataGrid - nowy styl?
+
+
+
+
+
+
+
+
+
+
+
+
+

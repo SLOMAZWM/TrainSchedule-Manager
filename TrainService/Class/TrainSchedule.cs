@@ -11,12 +11,7 @@ namespace ProjektLAB.TrainService.Class
     {
         public int IDTrainSchedule {  get; set; }
         public Train ? Train { get; set; }
-        public string ? DepartureStation { get; set; }
-        public string ? ArrivalStation { get; set; }
-        public string ? StartTime { get; set; }
-        public string ? EndTime { get; set; }
-        public string ? DepartureDate { get; set; }
+        public Route ? Route { get; set; }
         public string? DelayTime { get; set; }
-        
     }
 }

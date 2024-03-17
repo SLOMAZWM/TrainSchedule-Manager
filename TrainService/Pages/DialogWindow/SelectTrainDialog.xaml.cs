@@ -60,6 +60,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                 routePage.CompartmentCarLbl.Content = selectedItem.CompartmentCar;
                 routePage.OpenCarLbl.Content = selectedItem.OpenCar;
                 routePage.SleepingCarLbl.Content = selectedItem.SleepingCar;
+                routePage.selectedTrain = selectedItem;
                 this.Close();
             }
             else

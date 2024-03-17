@@ -61,29 +61,46 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Label Content="Godzina Rozpoczęcia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
+                            <Label Content="Czas Rozpoczęcia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
                             <TextBox x:Name="StartTimeTextBox" Text="Liczba" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Label Content="Godzina Zakończenia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
+                            <Label Content="Czas Zakończenia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
                             <TextBox x:Name="EndTimeTextBox" Text="Liczba" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Label Content="Data Rozpoczęcia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
+                            <DatePicker x:Name="DateOfStartDP" Text="Liczba" Style="{StaticResource GetDateFromUser}" FontSize="12" Foreground="White" Width="125" Margin="0,5,0,0" FontWeight="Normal"/>
                         </StackPanel>
 
                         <Label Content="Informacje o wybranej stacji" FontSize="16" Style="{StaticResource NavigationTopLabel}" Margin="0,5,0,0"/>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Label Content="Liczba peronów:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="145"/>
-                            <Label Content="0" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
+                            <Label Content="Czas przyjazdu:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="134"/>
+                            <Label x:Name="ArrivalTimeStationLbl" Content="BRAK INFO" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Label Content="Liczba torów:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="145"/>
-                            <Label Content="0" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
+                            <Label Content="Czas odjazdu:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="134"/>
+                            <Label x:Name="DepartureTimeStationLbl" Content="BRAK INFO" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
                         </StackPanel>
 
+                        <Separator Grid.Column="0" Foreground="White" Width="300" Height="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0"/>
 
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,80,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label Content="Wybrany peron:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="145"/>
+                        <Label x:Name="SelectedPlatformLbl" Content="BRAK" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label Content="Wybrany tor:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="145"/>
+                        <Label x:Name="SelectedTrackLbl" Content="BRAK" Style="{StaticResource NavigationTopLabel}" FontSize="12" Foreground="White" Width="auto"/>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
 
                             <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Click="SeeDetailsBtn_Click" >
                                 <StackPanel Orientation="Horizontal" >
@@ -186,7 +203,7 @@
                     </ListBox>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,25">
-                        <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Margin="0">
+                        <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Margin="0" Click="SaveRoute_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="ContentSave" Margin="0,7,2,0"/>
                                 <Label Content="Zapisz trasę" Style="{StaticResource LabelButton}"/>
