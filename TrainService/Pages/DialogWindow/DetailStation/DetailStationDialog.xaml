@@ -26,18 +26,18 @@ Title="DetailStationDialog" Height="400" Width="600" Background="Transparent" Wi
 
             <Frame x:Name="StationDetailFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
 
-            <!--<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="120,0,0,0">
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="120,0,0,0">
                 <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Margin="0" Click="SaveAllChanges_Click">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="ContentSaveAll" Margin="0,3,10,0"/>
                         <TextBlock Text="Zapisz wszystko"/>
                     </StackPanel>
                 </Button>
-            </StackPanel>-->
+            </StackPanel>
             
             <!-- Pagination Section -->
             <Border Grid.Row="2" HorizontalAlignment="Center" BorderBrush="black" BorderThickness="1" CornerRadius="5" Padding="5" 
-Background="#E8DDB5" Margin="0,10,0,10">
+Background="#E8DDB5" Margin="240,10,0,10">
                 <StackPanel Orientation="Horizontal" x:Name="PaginationStackPanel">
                     <Button Style="{StaticResource pagingButton}" >
                         <Icon:PackIconMaterial Kind="ChevronDoubleLeft" Style="{StaticResource pagingButtonIcon}"/>

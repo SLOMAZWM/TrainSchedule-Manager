@@ -24,6 +24,9 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
         public Route newRoute { get; set; }
         private string startStation;
         private string endStation;
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public DetailStationDialog detailStationDialog { get; set; }
         public RouteAddPage(Route newR, string start, string end)
         {
             InitializeComponent();
@@ -54,22 +57,35 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
 
         private void SeeDetailsBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(StartTimeTextBox.Text == "Liczba" || StartTimeTextBox.Text == string.Empty && EndTimeTextBox.Text == "Liczba" || EndTimeTextBox.Text == string.Empty)
+            if (TimeSpan.TryParse(StartTimeTextBox.Text, out TimeSpan startTime) &&
+                TimeSpan.TryParse(EndTimeTextBox.Text, out TimeSpan endTime))
             {
-                MessageBox.Show("Wypełnij datę rozpoczęcia, lub zakończenia kursu!", "Błąd wypełnienia", MessageBoxButton.OK, MessageBoxImage.Error);
+                StartTime = startTime;
+                EndTime = endTime;
+
+                if (detailStationDialog == null || !detailStationDialog.IsVisible)
+                {
+                    detailStationDialog = new DetailStationDialog(newRoute, StartTime, EndTime);
+                    detailStationDialog.OnStationsUpdated = updatedStations =>
+                    {
+                        newRoute.Stations = updatedStations;
+                        RefreshStationsList();
+                    };
+                }
+
+                detailStationDialog.ShowDialog();
             }
             else
             {
-                TimeSpan StartTime = TimeSpan.Parse(StartTimeTextBox.Text);
-                TimeSpan EndTime = TimeSpan.Parse(EndTimeTextBox.Text);
-                DetailStationDialog detailStationDialog = new DetailStationDialog(newRoute, StartTime, EndTime);
-                detailStationDialog.OnStationsUpdated = (updatedStations) =>
-                {
-                    newRoute.Stations = updatedStations;
-                    RouteListBox.ItemsSource = newRoute.Stations;
-                };
-                detailStationDialog.ShowDialog();
+                MessageBox.Show("Wypełnij datę rozpoczęcia lub zakończenia kursu!", "Błąd wypełnienia", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void RefreshStationsList()
+        {
+            RouteListBox.ItemsSource = null;
+            RouteListBox.ItemsSource = newRoute.Stations;
+        }
+
     }
 }

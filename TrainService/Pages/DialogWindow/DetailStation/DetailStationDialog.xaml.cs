@@ -37,6 +37,12 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
             InitializePagination();
         }
 
+        private void SaveAllChanges_Click(object sender, RoutedEventArgs e)
+        {
+            OnStationsUpdated?.Invoke(StationsList);
+            MessageBox.Show("Zapisano wszystkie zmiany.");
+        }
+
         private void InitializePagination()
         {
             PaginationItemsControl.ItemsSource = Enumerable.Range(1, StationsList.Count);
@@ -67,6 +73,8 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
         {
             if (_paginationControls.TryGetValue(PageIndex, out var control))
             {
+                var station = StationsList[PageIndex];
+                control.InitializeTextBoxes(station);
                 StationDetailFrame.Content = control;
             }
         }
@@ -81,9 +89,6 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
             this.DragMove();
         }
 
-        private void SaveAllChanges_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Collections.Specialized.BitVector32;
 
 namespace ProjektLAB.TrainService.Pages.DialogWindow.DetailStation
 {
@@ -27,6 +28,13 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow.DetailStation
             InitializeComponent();
             _station = station;
             this.DataContext = station;
+        }
+
+        public void InitializeTextBoxes(Station station)
+        {
+            _station = station;
+            ArrivalTimeTextBox.Text = station.ArrivalTime ?? "";
+            DepartureTimeTextBox.Text = station.DepartureTime ?? "";
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)

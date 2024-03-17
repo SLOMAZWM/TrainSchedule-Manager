@@ -30,13 +30,6 @@
                             <TextBlock Text="Zapisz Godziny"/>
                         </StackPanel>
                     </Button>
-
-                    <Button Style="{StaticResource LogicButton}" Margin="10,0,0,0">
-                        <StackPanel Orientation="Horizontal">
-                            <Icon:PackIconMaterial Kind="Cancel" Margin="0,2,15,0"/>
-                            <TextBlock Text="Anuluj Zmiany"/>
-                        </StackPanel>
-                    </Button>
                 </StackPanel>
                 
         </StackPanel>
