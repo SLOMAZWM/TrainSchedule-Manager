@@ -28,33 +28,6 @@ namespace ProjektLAB.TrainService.Class
             TrackNumber = SelectedTrack;
         }
 
-        //public bool IsValid()
-        //{
-        //    if(ArrivalTime != null)
-        //    {
-        //        MessageBox.Show($"Wybierz czas przyjazdu dla {Name}!", "Błąd wypełnienia", MessageBoxButton.OK, MessageBoxImage.Error);
-        //        return false;
-        //    }
-        //    else if(DepartureTime != null)
-        //    {
-        //        MessageBox.Show($"Wybierz czas odjazdu dla {Name}!", "Błąd wypełnienia", MessageBoxButton.OK, MessageBoxImage.Error);
-        //        return false;
-        //    }
-        //    else if(SelectedPlatform != null)
-        //    {
-        //        MessageBox.Show($"Wybierz Peron dla {Name}!", "Błąd wypełnienia", MessageBoxButton.OK, MessageBoxImage.Error);
-        //        return false;
-        //    }
-        //    else if (SelectedTrack != null)
-        //    {
-        //        MessageBox.Show($"Wybierz Tor dla {Name}!", "Błąd wypełnienia", MessageBoxButton.OK, MessageBoxImage.Error);
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-
-        //    }
-        //}
+        
     }
 }

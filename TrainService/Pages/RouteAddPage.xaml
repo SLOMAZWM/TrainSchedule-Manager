@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages.DialogWindow"
       mc:Ignorable="d" 
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-      d:DesignHeight="575" d:DesignWidth="900"
+      d:DesignHeight="575" d:DesignWidth="950"
       Title="RouteAddPage">
 
     <Border Background="Gray" CornerRadius="20">

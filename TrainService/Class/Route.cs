@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace ProjektLAB.TrainService.Class
 {
@@ -14,6 +15,11 @@ namespace ProjektLAB.TrainService.Class
         public TimeSpan EndTime { get; set; }
         public DateTime StartDate { get; set; }
         public List<Station> Stations { get; set; } = new List<Station>();
+
+        public string DepartureStation => Stations?.FirstOrDefault()?.Name ?? "N/A";
+        public string ArrivalStation => Stations?.LastOrDefault()?.Name ?? "N/A";
+        public string StartTimeString => StartTime.ToString(@"hh\:mm");
+        public string EndTimeString => EndTime.ToString(@"hh\:mm");
 
         public Route()
         {

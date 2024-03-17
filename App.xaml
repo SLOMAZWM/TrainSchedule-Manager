@@ -640,7 +640,7 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="FontSize" Value="12"/>
                 <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="Padding" Value="14,2"/>
+                <Setter Property="Padding" Value="13,0,13,0"/>
                 <Setter Property="Height" Value="40"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
