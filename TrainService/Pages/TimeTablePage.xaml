@@ -46,16 +46,16 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
 
             <Separator Grid.Row="2" Background="#E8DDB5"/>
 
-            <DataGrid x:Name="TrainScheduleDataGrid" Grid.Row="3" AutoGenerateColumns="False" Margin="20" Style="{StaticResource CustomDataGridStyle}">
+            <DataGrid x:Name="TrainScheduleDataGrid" Grid.Row="3" AutoGenerateColumns="False" Margin="11" Style="{StaticResource CustomDataGridStyle}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Stacja początkowa" Binding="{Binding Route.DepartureStation}" />
-                    <DataGridTextColumn Header="Stacja końcowa" Binding="{Binding Route.ArrivalStation}" />
+                    <DataGridTextColumn Header="Stacja początkowa" Binding="{Binding Route.StartStationName}" />
+                    <DataGridTextColumn Header="Stacja końcowa" Binding="{Binding Route.EndStationName}" />
                     <DataGridTextColumn Header="Godzina rozpoczęcia" Binding="{Binding Route.StartTimeString}" />
                     <DataGridTextColumn Header="Godzina zakończenia" Binding="{Binding Route.EndTimeString}" />
                     <DataGridTextColumn Header="Opóźnienia" Binding="{Binding DelayTime}" />
                     <DataGridTextColumn Header="Data wyjazdu" Binding="{Binding Route.StartDate, StringFormat=\{0:dd/MM/yyyy\}}" />
                     <DataGridTextColumn Header="Przewoźnik" Binding="{Binding Train.Carrier}" />
-                    <DataGridTextColumn Header="Typ Pociągu" Binding="{Binding Train.TrainType}" />
+                    <DataGridTextColumn Header="Rodzaj Pociągu" Binding="{Binding Train.TrainType}" />
                     <DataGridTextColumn Header="Numer pociągu" Binding="{Binding Train.TrainNumber}" />
                 </DataGrid.Columns>
             </DataGrid>

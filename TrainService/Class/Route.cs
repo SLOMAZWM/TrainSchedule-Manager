@@ -15,9 +15,9 @@ namespace ProjektLAB.TrainService.Class
         public TimeSpan EndTime { get; set; }
         public DateTime StartDate { get; set; }
         public List<Station> Stations { get; set; } = new List<Station>();
+        public string ?StartStationName { get; set; }
+        public string ?EndStationName { get; set; }
 
-        public string DepartureStation => Stations?.FirstOrDefault()?.Name ?? "N/A";
-        public string ArrivalStation => Stations?.LastOrDefault()?.Name ?? "N/A";
         public string StartTimeString => StartTime.ToString(@"hh\:mm");
         public string EndTimeString => EndTime.ToString(@"hh\:mm");
 

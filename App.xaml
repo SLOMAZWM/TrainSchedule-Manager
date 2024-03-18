@@ -638,7 +638,7 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Setter Property="Foreground" Value="#121518"/>
                 <Setter Property="BorderBrush" Value="#E8DDB5"/>
                 <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontSize" Value="13"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Padding" Value="13,0,13,0"/>
                 <Setter Property="Height" Value="40"/>

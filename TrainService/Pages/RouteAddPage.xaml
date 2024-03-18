@@ -62,12 +62,12 @@
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Label Content="Czas Rozpoczęcia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
-                            <TextBox x:Name="StartTimeTextBox" Text="Liczba" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
+                            <TextBox x:Name="StartTimeTextBox" Text="" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Label Content="Czas Zakończenia:" Style="{StaticResource NavigationTopLabel}" FontSize="12" Width="130"/>
-                            <TextBox x:Name="EndTimeTextBox" Text="Liczba" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
+                            <TextBox x:Name="EndTimeTextBox" Text="" Style="{StaticResource InputStyle}" FontSize="12" Foreground="White" Width="50" Margin="0,5,0,0" FontWeight="Normal"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -210,7 +210,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{StaticResource LogicButton}" Background="DarkRed" Margin="10,0,0,0">
+                        <Button Style="{StaticResource LogicButton}" Background="DarkRed" Margin="10,0,0,0" Click="CancelBtn_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Cancel" Margin="0,7,2,0"/>
                                 <Label Content="Anuluj" Style="{StaticResource LabelButton}"/>

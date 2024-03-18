@@ -148,5 +148,10 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
             MessageBox.Show("Trasa została pomyślnie zapisana.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
+
 }

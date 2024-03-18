@@ -27,8 +27,6 @@ namespace ProjektLAB.TrainService.Pages
     public partial class TimeTablePage : Page
     {
         private ObservableCollection<TrainSchedule> trainSchedules;
-        private DispatcherTimer stationSwitchTimer;
-        private int currentStationIndex = 0;
 
         public TimeTablePage()
         {
@@ -60,11 +58,11 @@ namespace ProjektLAB.TrainService.Pages
             }
 
             var filteredSchedules = trainSchedules.Where(schedule =>
-                (string.IsNullOrEmpty(departureFrom) || schedule.Route.DepartureStation.Contains(departureFrom, StringComparison.OrdinalIgnoreCase)) &&
-                (string.IsNullOrEmpty(arrivalTo) || schedule.Route.ArrivalStation.Contains(arrivalTo, StringComparison.OrdinalIgnoreCase)) &&
-                (!selectedDate.HasValue || schedule.Route.StartDate.Date == selectedDate.Value.Date) &&
-                (!selectedHour.HasValue || (schedule.Route.StartTime >= selectedHour.Value && schedule.Route.StartTime < selectedHour.Value.Add(TimeSpan.FromHours(4)))) &&
-                (string.IsNullOrEmpty(trainNumber) || schedule.Train.TrainNumber.Contains(trainNumber, StringComparison.OrdinalIgnoreCase))
+                (string.IsNullOrEmpty(departureFrom) || schedule.Route!.StartStationName!.Contains(departureFrom, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(arrivalTo) || schedule.Route!.EndStationName!.Contains(arrivalTo, StringComparison.OrdinalIgnoreCase)) &&
+                (!selectedDate.HasValue || schedule.Route!.StartDate.Date == selectedDate.Value.Date) &&
+                (!selectedHour.HasValue || (schedule.Route!.StartTime >= selectedHour.Value && schedule.Route.StartTime < selectedHour.Value.Add(TimeSpan.FromHours(4)))) &&
+                (string.IsNullOrEmpty(trainNumber) || schedule.Train!.TrainNumber!.Contains(trainNumber, StringComparison.OrdinalIgnoreCase))
             ).ToList();
 
             TrainScheduleDataGrid.ItemsSource = new ObservableCollection<TrainSchedule>(filteredSchedules);
