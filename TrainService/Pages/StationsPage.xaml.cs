@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProjektLAB.TrainService.Pages.DialogWindow;
+using System.Collections.ObjectModel;
 
 namespace ProjektLAB.TrainService.Pages
 {
@@ -25,6 +26,7 @@ namespace ProjektLAB.TrainService.Pages
     {
         private TrainServiceWindow trainService;
         private List<Station> stations = new List<Station>();
+        private ObservableCollection<TrainSchedule> trainSchedules;
 
         public StationsPage(TrainServiceWindow trainS)
         {
@@ -32,6 +34,9 @@ namespace ProjektLAB.TrainService.Pages
             stations = StationServiceDataBase.InitializeMainStationsFromDataBase();
             InitializeStationsToSelect();
             trainService = trainS;
+            trainSchedules = new ObservableCollection<TrainSchedule>();
+            trainSchedules = TimeTableServiceDataBase.GetTrainSchedules();
+            TrainDataGrid.ItemsSource = trainSchedules;
         }
 
         private void InitializeStationsToSelect()
@@ -46,6 +51,37 @@ namespace ProjektLAB.TrainService.Pages
         {
             WhichStationsDialog user_Choice = new WhichStationsDialog(trainService);
             user_Choice.ShowDialog();
+        }
+
+        private void SelectStationCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch(SelectStationCB.SelectedIndex)
+            {
+                case 0:
+                    {
+                        FilteredText("OPOLE GŁÓWNE");
+                        break;
+                    }
+                case 1:
+                    {
+                        FilteredText("WROCŁAW GŁÓWNY");
+                        break;
+                    }
+                case 2:
+                    {
+                        FilteredText("ŁÓDŹ WIDZEW");
+                        break;
+                    }
+            }
+        }
+
+        private void FilteredText(string nameStation)
+        {
+            var filteredSchedules = trainSchedules.Where(schedule =>
+                (schedule.Route!.StartStationName!.Contains(nameStation, StringComparison.OrdinalIgnoreCase)) ||
+                (schedule.Route!.EndStationName!.Contains(nameStation, StringComparison.OrdinalIgnoreCase))).ToList();
+
+            TrainDataGrid.ItemsSource = new ObservableCollection<TrainSchedule>(filteredSchedules);
         }
     }
 }

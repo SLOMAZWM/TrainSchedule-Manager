@@ -26,7 +26,7 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
 
                 <Label Style="{StaticResource NavigationTopLabel}" Content="Wybierz stację:" FontSize="20"/>
-                <ComboBox Name="SelectStationCB" Style="{StaticResource SelectUser}" Width="140"/>
+                <ComboBox Name="SelectStationCB" Style="{StaticResource SelectUser}" Width="140" SelectionChanged="SelectStationCB_SelectionChanged"/>
 
             </StackPanel>
 
@@ -54,7 +54,7 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
-                            
+
                             <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Click="AddRideBtn_Click">
                                 <Label Content="Dodaj przejazd" Style="{StaticResource LabelButton}"/>
                             </Button>
@@ -70,8 +70,26 @@
                         </StackPanel>
 
                     </StackPanel>
-                    
+
                 </Border>
+
+                <Grid Grid.Column="1">
+
+                    <DataGrid x:Name="TrainDataGrid" Style="{StaticResource CustomDataGridStyle}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Stacja początkowa" Binding="{Binding Route.StartStationName}" />
+                            <DataGridTextColumn Header="Stacja końcowa" Binding="{Binding Route.EndStationName}" />
+                            <DataGridTextColumn Header="Godzina rozpoczęcia" Binding="{Binding Route.StartTimeString}" />
+                            <DataGridTextColumn Header="Godzina zakończenia" Binding="{Binding Route.EndTimeString}" />
+                            <DataGridTextColumn Header="Opóźnienia" Binding="{Binding DelayTime}" />
+                            <DataGridTextColumn Header="Data wyjazdu" Binding="{Binding Route.StartDate, StringFormat=\{0:dd/MM/yyyy\}}" />
+                            <DataGridTextColumn Header="Przewoźnik" Binding="{Binding Train.Carrier}" />
+                            <DataGridTextColumn Header="Rodzaj Pociągu" Binding="{Binding Train.TrainType}" />
+                            <DataGridTextColumn Header="Numer pociągu" Binding="{Binding Train.TrainNumber}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                </Grid>
 
             </Grid>
 

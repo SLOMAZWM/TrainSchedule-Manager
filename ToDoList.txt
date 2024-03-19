@@ -16,8 +16,10 @@ c) rodzaj wagonow
 
 Aktualne zadanie:
 
-c) szczegolowe informacje
-
+c) szczegolowe informacje - pokazywanie trasy i wszystkich przystankow
+d) edytowanie przejazdow
+e) usuwanie przejazdow
+f) stworzenie wyszukiwarki, ktora uwzgledni przystanki pomiędzy stacją początkową a końcową (jak wyświetlić wyniki w datagrid?)
 
 LISTA KOLOROW:
 
