@@ -717,6 +717,40 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
 
+            <Style TargetType="ListBox" x:Key="CustomListBoxStyle">
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="BorderBrush" Value="#E8DDB5"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Foreground" Value="#121518"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="#121518"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="10,5"/>
+                            <Setter Property="Margin" Value="2"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#A49971"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#C6BB93"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                               
+                            </Style.Triggers>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
         </ResourceDictionary>
 
