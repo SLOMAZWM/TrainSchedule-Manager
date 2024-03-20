@@ -30,12 +30,16 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public Train? selectedTrain { get; set; }
-        public RouteAddPage(Route newR, string start, string end)
+        private bool isEdit = false;
+
+        public RouteAddPage(Route newR, string start, string end, bool Edited, Train selectT)
         {
             InitializeComponent();
             newRoute = newR;
             startStation = start;
             endStation = end;
+            isEdit = Edited;
+            selectedTrain = selectT;
             InitializeData();
         }
 
@@ -45,6 +49,39 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
             EndStationLbl.Content = endStation;
             RouteListBox.ItemsSource = newRoute.Stations;
             AmountOfStationsLbl.Content = RouteListBox.Items.Count;
+
+            if(isEdit == true)
+            {
+                TitleLbl.Content = "Edytowanie trasy";
+                InitializeEditRoute();
+            }
+            else
+            {
+                TitleLbl.Content = "Dodawanie trasy";
+            }
+        }
+
+        private void InitializeEditRoute()
+        {
+            StartTimeTextBox.Text = newRoute.StartTimeString;
+            EndTimeTextBox.Text = newRoute.EndTimeString;
+            DateOfStartDP.Text = newRoute.StartDate.ToString();
+            TrainTypeLbl.Content = selectedTrain?.TrainType;
+            CarrierLbl.Content = selectedTrain?.Carrier;
+            TrainNumberLbl.Content = selectedTrain?.TrainNumber;
+            NumberOfSeatsLbl.Content = selectedTrain?.NumberOfSeats;
+            MaxSpeedLbl.Content = selectedTrain?.MaxSpeed;
+            CompartmentCarLbl.Content = selectedTrain?.CompartmentCar;
+            OpenCarLbl.Content = selectedTrain?.OpenCar;
+            SleepingCarLbl.Content = selectedTrain?.SleepingCar;
+            SaveBtnLbl.Content = "Edytuj trasę";
+
+            foreach(Station stations in newRoute.Stations) 
+            {
+                stations.SelectedTrack = stations.TrackNumber;
+                stations.SelectedPlatform = stations.PlatformNumber;
+            }
+
         }
 
         private void LoadTrainBtn_Click(object sender, RoutedEventArgs e)

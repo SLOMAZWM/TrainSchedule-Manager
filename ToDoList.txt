@@ -17,9 +17,10 @@ c) rodzaj wagonow
 Aktualne zadanie:
 
 c) szczegolowe informacje - pokazywanie trasy i wszystkich przystankow
-d) edytowanie przejazdow
+d) edytowanie przejazdow (dodanie update QUERY)
 e) usuwanie przejazdow
 f) stworzenie wyszukiwarki, ktora uwzgledni przystanki pomiędzy stacją początkową a końcową (jak wyświetlić wyniki w datagrid?)
+g) zabezpieczenie haseł w bazie danych pracowników (user = hashowane hasła)
 
 LISTA KOLOROW:
 
@@ -40,12 +41,6 @@ https://coolors.co/333333-666a86-95b8d1-e8ddb5-edafb8
 Błędy:
 
 Po ponownym uruchomieniu okna szczegolow, trzeba wybrac platforme by uruchomic dostep do wybierania torow
-
-
-Walidacja dla logiki przejazdu (nastepny przystanek, nie moze byc wczesniej niz poprzedni)
-Walidacja dla start/zakonczenie (zakonczenie nie moze byc wczesniej niz start)
-napraw trainDataGrid - nowy styl?
-
 
 
 

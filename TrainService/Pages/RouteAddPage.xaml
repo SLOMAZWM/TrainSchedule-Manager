@@ -20,7 +20,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,5,0,5">
-                <Label FontWeight="Bold" Content="Dodawanie trasy" Style="{StaticResource TopLabel}" Grid.Row="0" FontSize="32"/>
+                <Label x:Name="TitleLbl" FontWeight="Bold" Content="Dodawanie trasy" Style="{StaticResource TopLabel}" Grid.Row="0" FontSize="32"/>
 
             </StackPanel>
 
@@ -206,7 +206,7 @@
                         <Button Style="{StaticResource NavigationButton}" Background="DarkGreen" Margin="0" Click="SaveRoute_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="ContentSave" Margin="0,7,2,0"/>
-                                <Label Content="Zapisz trasę" Style="{StaticResource LabelButton}"/>
+                                <Label x:Name="SaveBtnLbl" Content="Zapisz trasę" Style="{StaticResource LabelButton}"/>
                             </StackPanel>
                         </Button>
 

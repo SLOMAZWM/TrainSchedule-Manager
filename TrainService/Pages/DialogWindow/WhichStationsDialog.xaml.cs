@@ -21,6 +21,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
     public partial class WhichStationsDialog : Window
     {
         private TrainServiceWindow trainWindow;
+        private Train newTrain = new Train();
         public WhichStationsDialog(TrainServiceWindow trainW)
         {
             InitializeComponent();
@@ -51,15 +52,16 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
 
         private void ConfirmBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(StartStationCB != null && EndStationCB != null) 
+            if (StartStationCB != null && EndStationCB != null)
             {
+                bool isEdit = false;
                 byte stationNumberIndexStart = Convert.ToByte(StartStationCB.SelectedIndex);
                 byte stationNumberIndexEnd = Convert.ToByte(EndStationCB.SelectedIndex);
-                switch(stationNumberIndexStart)
+                switch (stationNumberIndexStart)
                 {
                     case 0: // OPOLE GŁÓWNE
                         {
-                            switch(stationNumberIndexEnd)
+                            switch (stationNumberIndexEnd)
                             {
                                 case 0:
                                     {
@@ -72,7 +74,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                                         string EndStation = EndStationCB.SelectedItem.ToString()!;
                                         Route fromOpoleToWroclaw = new Route();
                                         fromOpoleToWroclaw = fromOpoleToWroclaw.FromOpoleToWroclaw();
-                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromOpoleToWroclaw, StartStation, EndStation));
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromOpoleToWroclaw, StartStation, EndStation, isEdit, newTrain));
                                         this.Close();
                                         break;
                                     }
@@ -82,7 +84,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                                         string EndStation = EndStationCB.SelectedItem.ToString()!;
                                         Route fromOpoleToLodz = new Route();
                                         fromOpoleToLodz = fromOpoleToLodz.FromOpoleToLodz();
-                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromOpoleToLodz, StartStation, EndStation));
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromOpoleToLodz, StartStation, EndStation, isEdit, newTrain));
                                         this.Close();
                                         break;
                                     }
@@ -91,7 +93,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                         }
                     case 1: //WROCŁAW GŁÓWNY
                         {
-                            switch(stationNumberIndexEnd)
+                            switch (stationNumberIndexEnd)
                             {
                                 case 0:
                                     {
@@ -99,7 +101,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                                         string EndStation = EndStationCB.SelectedItem.ToString()!;
                                         Route fromWroclawToOpole = new Route();
                                         fromWroclawToOpole = fromWroclawToOpole.FromWroclawToOpole();
-                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromWroclawToOpole, StartStation, EndStation));
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromWroclawToOpole, StartStation, EndStation, isEdit, newTrain));
                                         this.Close();
                                         break;
                                     }
@@ -114,7 +116,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                                         string EndStation = EndStationCB.SelectedItem.ToString()!;
                                         Route fromWroclawToLodz = new Route();
                                         fromWroclawToLodz = fromWroclawToLodz.FromWroclawToLodzWidzew();
-                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromWroclawToLodz, StartStation, EndStation));
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromWroclawToLodz, StartStation, EndStation, isEdit, newTrain));
                                         this.Close();
                                         break;
                                     }
@@ -123,7 +125,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                         }
                     case 2: //ŁÓDŹ
                         {
-                            switch(stationNumberIndexEnd)
+                            switch (stationNumberIndexEnd)
                             {
                                 case 0:
                                     {
@@ -131,7 +133,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                                         string EndStation = EndStationCB.SelectedItem.ToString()!;
                                         Route fromLodzToOpole = new Route();
                                         fromLodzToOpole = fromLodzToOpole.FromLodzToOpole();
-                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromLodzToOpole, StartStation, EndStation));
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromLodzToOpole, StartStation, EndStation, isEdit, newTrain));
                                         this.Close();
                                         break;
                                     }
@@ -141,7 +143,7 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                                         string EndStation = EndStationCB.SelectedItem.ToString()!;
                                         Route fromLodzToWroclaw = new Route();
                                         fromLodzToWroclaw = fromLodzToWroclaw.FromLodzWidzewToWroclawGlowny();
-                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromLodzToWroclaw, StartStation, EndStation));
+                                        trainWindow.ContentFrame.NavigationService.Navigate(new RouteAddPage(fromLodzToWroclaw, StartStation, EndStation, isEdit, newTrain));
                                         this.Close();
                                         break;
                                     }

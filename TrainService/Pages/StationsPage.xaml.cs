@@ -83,5 +83,28 @@ namespace ProjektLAB.TrainService.Pages
 
             TrainDataGrid.ItemsSource = new ObservableCollection<TrainSchedule>(filteredSchedules);
         }
+
+        private void EditRideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TrainSchedule selectedItem = (TrainSchedule)TrainDataGrid.SelectedItem;
+
+            if (selectedItem != null) 
+            {
+                string startStationSelected = selectedItem.Route?.StartStationName!;
+                string endStationSelected = selectedItem.Route?.EndStationName!;
+
+                bool isEdit = true;
+                Train editedTrain = new Train();
+                editedTrain = selectedItem.Train!;
+
+                RouteAddPage editedRoute = new RouteAddPage(selectedItem.Route!, startStationSelected, endStationSelected, isEdit, editedTrain);
+                trainService.ContentFrame.Navigate(editedRoute);
+            }
+            else
+            {
+                MessageBox.Show("Zaznacz trasę do edycji!", "Błąd wyboru", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
     }
 }

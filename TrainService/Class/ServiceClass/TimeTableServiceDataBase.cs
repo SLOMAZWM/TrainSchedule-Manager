@@ -16,6 +16,9 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
             ObservableCollection<TrainSchedule> schedules = new ObservableCollection<TrainSchedule>();
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
+            var routesDict = new Dictionary<int, Route>();
+            var trainSchedulesDict = new Dictionary<int, TrainSchedule>();
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"SELECT
@@ -23,14 +26,24 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
     ts.DelayTime,
     t.IDTrain,
     t.TrainNumber,
-    t.TrainType,
     t.Carrier,
+    t.TrainType,
+    t.NumberOfSeats,
+    t.CompartmentCar,
+    t.OpenCar,
+    t.SleepingCar,
+    t.MaxSpeed,
     r.RouteID,
     r.StartTime,
     r.EndTime,
     r.DepartureDate,
-    ss.Name AS StartStationName,
-    es.Name AS EndStationName
+    s.StationID,
+    s.Name AS StationName,
+    s.ArrivalTime,
+    s.DepartureTime,
+    s.PlatformNumber,
+    s.TrackNumber,
+    rs.SequenceNumber
 FROM
     TrainSchedule ts
 INNER JOIN
@@ -38,14 +51,11 @@ INNER JOIN
 INNER JOIN
     Route r ON ts.RouteID = r.RouteID
 INNER JOIN
-    RouteStation rsStart ON r.RouteID = rsStart.RouteID
+    RouteStation rs ON r.RouteID = rs.RouteID
 INNER JOIN
-    RouteStation rsEnd ON r.RouteID = rsEnd.RouteID
-INNER JOIN
-    Stations ss ON rsStart.StationID = ss.StationID AND rsStart.SequenceNumber = (SELECT MIN(SequenceNumber) FROM RouteStation WHERE RouteID = r.RouteID)
-INNER JOIN
-    Stations es ON rsEnd.StationID = es.StationID AND rsEnd.SequenceNumber = (SELECT MAX(SequenceNumber) FROM RouteStation WHERE RouteID = r.RouteID)
-";
+    Stations s ON rs.StationID = s.StationID
+ORDER BY
+    ts.IDTrainSchedule, rs.SequenceNumber;";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
@@ -54,30 +64,67 @@ INNER JOIN
                 {
                     while (reader.Read())
                     {
-                        var schedule = new TrainSchedule
+                        int routeID = (int)reader["RouteID"];
+                        int trainScheduleID = (int)reader["IDTrainSchedule"];
+
+                        if (!trainSchedulesDict.TryGetValue(trainScheduleID, out var trainSchedule))
                         {
-                            IDTrainSchedule = int.Parse(reader["IDTrainSchedule"].ToString()!),
-                            DelayTime = reader["DelayTime"] as string,
-                            Train = new Train
+                            trainSchedule = new TrainSchedule
                             {
-                                IDTrain = int.Parse(reader["IDTrain"].ToString()!),
-                                TrainNumber = reader["TrainNumber"] as string,
-                                Carrier = reader["Carrier"] as string,
-                                TrainType = reader["TrainType"] as string,
-                            },
-                            Route = new Route
-                            {
-                                RouteID = int.Parse(reader["RouteID"].ToString()!),
-                                StartTime = TimeSpan.Parse(reader["StartTime"].ToString()!),
-                                EndTime = TimeSpan.Parse(reader["EndTime"].ToString()!),
-                                StartDate = DateTime.Parse(reader["DepartureDate"].ToString()!),
-                                StartStationName = reader["StartStationName"].ToString()!,
-                                EndStationName = reader["EndStationName"].ToString(),
-                            }
-                };
-        schedules.Add(schedule);
+                                IDTrainSchedule = trainScheduleID,
+                                DelayTime = reader["DelayTime"]?.ToString(),
+                                Train = new Train
+                                {
+                                    IDTrain = (int?)reader["IDTrain"],
+                                    TrainNumber = reader["TrainNumber"]?.ToString(),
+                                    Carrier = reader["Carrier"]?.ToString(),
+                                    TrainType = reader["TrainType"]?.ToString(),
+                                    NumberOfSeats = (int?)reader["NumberOfSeats"],
+                                    CompartmentCar = (bool?)reader["CompartmentCar"],
+                                    OpenCar = (bool?)reader["OpenCar"],
+                                    SleepingCar = (bool?)reader["SleepingCar"],
+                                    MaxSpeed = (int?)reader["MaxSpeed"]
+                                },
+                                Route = new Route
+                                {
+                                    RouteID = routeID,
+                                    StartTime = (TimeSpan)reader["StartTime"],
+                                    EndTime = (TimeSpan)reader["EndTime"],
+                                    StartDate = (DateTime)reader["DepartureDate"],
+                                    Stations = new List<Station>()
+                                }
+                            };
+
+                            trainSchedulesDict.Add(trainScheduleID, trainSchedule);
+                            schedules.Add(trainSchedule);
+                        }
+
+                        if (!routesDict.TryGetValue(routeID, out var route))
+                        {
+                            route = trainSchedule.Route;
+                            routesDict.Add(routeID, route!);
+                        }
+
+                        var station = new Station
+                        {
+                            StationID = (int)reader["StationID"],
+                            Name = reader["StationName"]?.ToString(),
+                            ArrivalTime = reader["ArrivalTime"]?.ToString(),
+                            DepartureTime = reader["DepartureTime"]?.ToString(),
+                            PlatformNumber = (int?)reader["PlatformNumber"],
+                            TrackNumber = (int?)reader["TrackNumber"]
+                        };
+
+                        route!.Stations.Add(station);
                     }
                 }
+            }
+
+            foreach (var schedule in schedules)
+            {
+                var stations = schedule.Route!.Stations.OrderBy(s => s.StationID).ToList();
+                schedule.Route.StartStationName = stations.FirstOrDefault()?.Name;
+                schedule.Route.EndStationName = stations.LastOrDefault()?.Name;
             }
 
             return schedules;

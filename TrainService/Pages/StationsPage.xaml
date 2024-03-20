@@ -55,15 +55,15 @@
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0">
 
-                            <Button Style="{StaticResource LogicButton}" Background="DarkGreen" Click="AddRideBtn_Click">
+                            <Button Style="{StaticResource NavigationButton}" Background="DarkGreen" Click="AddRideBtn_Click">
                                 <Label Content="Dodaj przejazd" Style="{StaticResource LabelButton}"/>
                             </Button>
 
-                            <!--<Button Style="{StaticResource LogicButton}" Background="YellowGreen">
+                            <Button Style="{StaticResource NavigationButton}" Background="DarkGray" Click="EditRideBtn_Click">
                                 <Label Content="Edytuj przejazd" Style="{StaticResource LabelButton}"/>
-                            </Button>-->
+                            </Button>
 
-                            <Button Style="{StaticResource LogicButton}" Background="DarkRed">
+                            <Button Style="{StaticResource NavigationButton}" Background="DarkRed">
                                 <Label Content="Usuń przejazd" Style="{StaticResource LabelButton}"/>
                             </Button>
 
