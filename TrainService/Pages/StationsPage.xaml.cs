@@ -106,5 +106,21 @@ namespace ProjektLAB.TrainService.Pages
             }
         }
 
+        private void DeleteRideBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TrainSchedule selectedItem = (TrainSchedule)TrainDataGrid.SelectedItem;
+
+            if(selectedItem != null) 
+            {
+                RouteServiceDataBase.DeleteTrainSchedule(selectedItem.IDTrainSchedule);            }
+            else
+            {
+                MessageBox.Show("Zaznacz trasę do usunięcia!", "Błąd wyboru", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+        }
+
     }
+
+
 }

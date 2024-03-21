@@ -180,8 +180,16 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                 MessageBox.Show("Proszę wybrać datę rozpoczęcia.", "Brak daty", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            RouteServiceDataBase.SaveRouteAndStations(newRoute, selectedTrain, newRoute.StartDate);
 
+            if(isEdit == false)
+            {
+                RouteServiceDataBase.SaveRouteAndStations(newRoute, selectedTrain, newRoute.StartDate);
+
+            }
+else
+            {
+                RouteServiceDataBase.UpdateTrainSchedule(newRoute, selectedTrain);
+            }
             MessageBox.Show("Trasa została pomyślnie zapisana.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

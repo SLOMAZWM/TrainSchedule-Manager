@@ -114,9 +114,140 @@ VALUES (@TrainID, @RouteID, @DelayTime);";
             }
         }
 
-        private static void GetAllInformation(SqlConnection connection, SqlTransaction transaction, int trainID, int routeID, int TrainScheduleID)
+        public static bool UpdateTrainSchedule(Route route, Train train)
         {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            bool updateSuccess = false;
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        
+                        string updateRouteQuery = @"
+                    UPDATE [dbo].[Route]
+                    SET StartTime = @StartTime, EndTime = @EndTime, DepartureDate = @DepartureDate
+                    WHERE RouteID = @RouteID;
+                ";
+                        using (SqlCommand cmd = new SqlCommand(updateRouteQuery, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@StartTime", route.StartTime);
+                            cmd.Parameters.AddWithValue("@EndTime", route.EndTime);
+                            cmd.Parameters.AddWithValue("@DepartureDate", route.StartDate);
+                            cmd.Parameters.AddWithValue("@RouteID", route.RouteID);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        
+                        foreach (Station station in route.Stations)
+                        {
+                            string updateStationQuery = @"
+                        UPDATE [dbo].[Stations]
+                        SET ArrivalTime = @ArrivalTime, DepartureTime = @DepartureTime, 
+                            PlatformNumber = @PlatformNumber, TrackNumber = @TrackNumber
+                        WHERE StationID = @StationID;
+                    ";
+                            using (SqlCommand cmd = new SqlCommand(updateStationQuery, connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@ArrivalTime", station.ArrivalTime ?? (object)DBNull.Value);
+                                cmd.Parameters.AddWithValue("@DepartureTime", station.DepartureTime ?? (object)DBNull.Value);
+                                cmd.Parameters.AddWithValue("@PlatformNumber", station.PlatformNumber ?? (object)DBNull.Value);
+                                cmd.Parameters.AddWithValue("@TrackNumber", station.TrackNumber ?? (object)DBNull.Value);
+                                cmd.Parameters.AddWithValue("@StationID", station.StationID);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        
+                        string updateTrainScheduleQuery = @"
+                    UPDATE [dbo].[TrainSchedule]
+                    SET TrainID = @NewTrainID
+                    WHERE RouteID = @RouteID;
+                ";
+                        using (SqlCommand cmd = new SqlCommand(updateTrainScheduleQuery, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@NewTrainID", train.IDTrain);
+                            cmd.Parameters.AddWithValue("@RouteID", route.RouteID);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        updateSuccess = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Wystąpił błąd: + " + ex.Message, "Błąd bazy danych", MessageBoxButton.OK, MessageBoxImage.Error);
+                        updateSuccess = false;
+                    }
+                }
+            }
+
+            return updateSuccess;
         }
+
+        public static bool DeleteTrainSchedule(int trainScheduleId)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            bool deleteSuccess = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        
+                        int routeId;
+                        string getRouteIdQuery = "SELECT RouteID FROM TrainSchedule WHERE IDTrainSchedule = @IDTrainSchedule";
+                        using (SqlCommand cmd = new SqlCommand(getRouteIdQuery, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@IDTrainSchedule", trainScheduleId);
+                            routeId = (int)cmd.ExecuteScalar();
+                        }
+
+                        
+                        string deleteTrainScheduleQuery = "DELETE FROM TrainSchedule WHERE IDTrainSchedule = @IDTrainSchedule";
+                        using (SqlCommand cmd = new SqlCommand(deleteTrainScheduleQuery, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@IDTrainSchedule", trainScheduleId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        
+                        string deleteRouteStationQuery = "DELETE FROM RouteStation WHERE RouteID = @RouteID";
+                        using (SqlCommand cmd = new SqlCommand(deleteRouteStationQuery, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@RouteID", routeId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        
+                        string deleteRouteQuery = "DELETE FROM Route WHERE RouteID = @RouteID";
+                        using (SqlCommand cmd = new SqlCommand(deleteRouteQuery, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@RouteID", routeId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        deleteSuccess = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        transaction.Rollback();
+                        deleteSuccess = false;
+                    }
+                }
+            }
+
+            return deleteSuccess;
+        }
+
     }
 }

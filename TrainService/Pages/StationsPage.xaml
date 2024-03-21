@@ -63,7 +63,7 @@
                                 <Label Content="Edytuj przejazd" Style="{StaticResource LabelButton}"/>
                             </Button>
 
-                            <Button Style="{StaticResource NavigationButton}" Background="DarkRed">
+                            <Button Style="{StaticResource NavigationButton}" Background="DarkRed" Click="DeleteRideBtn_Click">
                                 <Label Content="Usuń przejazd" Style="{StaticResource LabelButton}"/>
                             </Button>
 
