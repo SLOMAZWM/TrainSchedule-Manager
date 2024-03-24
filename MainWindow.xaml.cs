@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -29,7 +30,12 @@ namespace ProjektLAB
                 MessageBox.Show("Wypełnij Pole Loginu w rejestracji - użyj minimum 4 znaków!", "Błąd rejestracji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if(RegisterPasswordTxt.Password.Length < 8) 
+            if (!IsValidPasswordInRegister(RegisterPasswordTxt.Password))
+            {
+                MessageBox.Show("Hasło nie spełnia wymagań: musi zawierać co najmniej jedną małą literę, jedną wielką literę, jedną cyfrę oraz jeden znak specjalny.", "Błąd rejestracji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (RegisterPasswordTxt.Password.Length < 8) 
             {
                 MessageBox.Show("Wypełnij Pole Hasła w rejestracji - użyj minimum 8 znaków!", "Błąd rejestracji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -50,6 +56,12 @@ namespace ProjektLAB
                 return false;
             }
             return true;
+        }
+
+        private bool IsValidPasswordInRegister(string password)
+        {
+            Regex regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$%\^&\*]).+$");
+            return regex.IsMatch(password);
         }
 
         private bool IsValidLogin()

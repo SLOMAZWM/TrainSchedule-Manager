@@ -17,7 +17,6 @@ c) rodzaj wagonow
 Aktualne zadanie:
 
 c) szczegolowe informacje - pokazywanie trasy i wszystkich przystankow
-g) zabezpieczenie haseł w bazie danych pracowników (user = hashowane hasła)
 
 LISTA KOLOROW:
 

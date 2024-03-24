@@ -186,8 +186,21 @@ namespace ProjektLAB.TrainService.Pages.DialogWindow
                 RouteServiceDataBase.SaveRouteAndStations(newRoute, selectedTrain, newRoute.StartDate);
 
             }
-else
+            else
             {
+                foreach(Station station in newRoute.Stations)
+                {
+                    if(TimeSpan.Parse(station.ArrivalTime!) < TimeSpan.Parse(StartTimeTextBox.Text))
+                    {
+                        MessageBox.Show($"Stacja: {station.Name} - czas przyjazdu nie może być wcześniejszy niż czas rozpoczęcia kursu.", "Błąd czasu przyjazdu", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                    else if(TimeSpan.Parse(station.DepartureTime!) > TimeSpan.Parse(EndTimeTextBox.Text))
+                    {
+                        MessageBox.Show($"Stacja: {station.Name} - czas odjazdu musi być późniejszy niż czas zakończenia kursu.", "Błąd czasu odjazdu", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                }
                 RouteServiceDataBase.UpdateTrainSchedule(newRoute, selectedTrain);
             }
             MessageBox.Show("Trasa została pomyślnie zapisana.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -29,7 +29,7 @@ namespace ProjektLAB
                     using(SqlCommand cmd = new SqlCommand(query, conn)) 
                     {
                         cmd.Parameters.AddWithValue("@Login", user.Login);
-                        cmd.Parameters.AddWithValue("@Password", user.Password);
+                        cmd.Parameters.AddWithValue("@Password", HashingHelper.HashPassword(user.Password)); 
                         cmd.Parameters.AddWithValue("@First_Name", user.First_Name);
                         cmd.Parameters.AddWithValue("@Last_Name", user.Last_Name);
                         cmd.Parameters.AddWithValue("@BirthDay", user.BirthDay);
@@ -65,12 +65,11 @@ namespace ProjektLAB
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT Id, Login, Password, First_Name, Last_Name, BirthDay FROM [dbo].[User] WHERE Login = @Login AND Password = @Password";
+                string query = @"SELECT Id, Login, Password, First_Name, Last_Name, BirthDay FROM [dbo].[User] WHERE Login = @Login";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Login", login);
-                    cmd.Parameters.AddWithValue("@Password", password);
 
                     try
                     {
@@ -79,17 +78,21 @@ namespace ProjektLAB
                         {
                             if (reader.Read())
                             {
-                                // Tworzenie i zwracanie użytkownika z danymi
-                                User user = new User()
+                                string hashedPassword = HashingHelper.HashPassword(password);
+                                string storedHash = reader["Password"].ToString();
+                                if (hashedPassword.Equals(storedHash))
                                 {
-                                    Id = Convert.ToInt32(reader["Id"]),
-                                    Login = reader["Login"].ToString(),
-                                    Password = reader["Password"].ToString(),
-                                    First_Name = reader["First_Name"].ToString(),
-                                    Last_Name = reader["Last_Name"].ToString(),
-                                    BirthDay = reader["BirthDay"].ToString()
-                                };
-                                return user;
+                                    User user = new User()
+                                    {
+                                        Id = Convert.ToInt32(reader["Id"]),
+                                        Login = reader["Login"].ToString(),
+                                        Password = reader["Password"].ToString(),
+                                        First_Name = reader["First_Name"].ToString(),
+                                        Last_Name = reader["Last_Name"].ToString(),
+                                        BirthDay = reader["BirthDay"].ToString()
+                                    };
+                                    return user;
+                                }
                             }
                         }
                     }
@@ -99,8 +102,9 @@ namespace ProjektLAB
                     }
                 }
             }
+            // Authentication failed.
             return null;
-        
+        }
+
     }
-}
 }
