@@ -34,40 +34,91 @@ namespace ProjektLAB.TrainService.Pages
             InitializeTime();
             trainSchedules = new ObservableCollection<TrainSchedule>();
             LoadTrainSchedules();
+            TrainScheduleDataGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void OnSearchCriteriaChanged(object sender, EventArgs e)
+        private bool IsStationOnRoute(Route route, string stationPartialName, out int stationIndex)
+        {
+            stationIndex = route.Stations.FindIndex(station => station.Name!.IndexOf(stationPartialName, StringComparison.OrdinalIgnoreCase) >= 0);
+            return stationIndex >= 0;
+        }
+
+        private string GetFullStationName(Route route, string stationPartialName)
+        {
+            var fullStationName = route.Stations.FirstOrDefault(station => station.Name!.IndexOf(stationPartialName, StringComparison.OrdinalIgnoreCase) >= 0)?.Name;
+            return fullStationName ?? string.Empty;
+        }
+
+
+        private void SearchCriteriaBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!this.IsLoaded) return;
 
-            var departureFrom = DepartureFromTextBox.Text;
-            var arrivalTo = ArivalToTextBox.Text;
+            var departureFrom = DepartureFromTextBox.Text.Trim();
+            var arrivalTo = ArivalToTextBox.Text.Trim();
             var selectedDate = DepartureDatePicker.SelectedDate;
             var selectedHourString = DepartureHourCB.SelectedItem?.ToString();
-            var trainNumber = TrainNumberTxt.Text;
 
-            
-            TimeSpan? selectedHour = null;
+            if (string.IsNullOrWhiteSpace(departureFrom) || string.IsNullOrWhiteSpace(arrivalTo))
+            {
+                MessageBox.Show("Należy wprowadzić miejsce wyjazdu i miejsce przyjazdu.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            TimeSpan? selectedTime = null;
             if (!string.IsNullOrEmpty(selectedHourString))
             {
-                var hourParts = selectedHourString.Split(':');
-                if (hourParts.Length >= 2 && int.TryParse(hourParts[0], out int hour))
+                TimeSpan parsedTime;
+                if (TimeSpan.TryParse(selectedHourString, out parsedTime))
                 {
-                    selectedHour = TimeSpan.FromHours(hour);
+                    selectedTime = parsedTime;
                 }
             }
 
-            var filteredSchedules = trainSchedules.Where(schedule =>
-                (string.IsNullOrEmpty(departureFrom) || schedule.Route!.StartStationName!.Contains(departureFrom, StringComparison.OrdinalIgnoreCase)) &&
-                (string.IsNullOrEmpty(arrivalTo) || schedule.Route!.EndStationName!.Contains(arrivalTo, StringComparison.OrdinalIgnoreCase)) &&
-                (!selectedDate.HasValue || schedule.Route!.StartDate.Date == selectedDate.Value.Date) &&
-                (!selectedHour.HasValue || (schedule.Route!.StartTime >= selectedHour.Value && schedule.Route.StartTime < selectedHour.Value.Add(TimeSpan.FromHours(4)))) &&
-                (string.IsNullOrEmpty(trainNumber) || schedule.Train!.TrainNumber!.Contains(trainNumber, StringComparison.OrdinalIgnoreCase))
-            ).ToList();
+            TimeSpan timeWindowStart = selectedTime.HasValue ? selectedTime.Value.Add(TimeSpan.FromHours(-1)) : TimeSpan.MinValue;
+            TimeSpan timeWindowEnd = selectedTime.HasValue ? selectedTime.Value.Add(TimeSpan.FromHours(3)) : TimeSpan.MaxValue;
 
-            TrainScheduleDataGrid.ItemsSource = new ObservableCollection<TrainSchedule>(filteredSchedules);
+            var filteredSchedules = new ObservableCollection<TrainSchedule>(trainSchedules.Where(schedule =>
+            {
+                var route = schedule.Route!;
+                int departureIndex, arrivalIndex;
+
+                bool matchesDeparture = IsStationOnRoute(route, departureFrom, out departureIndex);
+                bool matchesArrival = IsStationOnRoute(route, arrivalTo, out arrivalIndex);
+                bool matchesDate = !selectedDate.HasValue || route.StartDate.Date == selectedDate.Value.Date;
+                bool withinTimeWindow = !selectedTime.HasValue || (route.StartTime >= timeWindowStart && route.StartTime <= timeWindowEnd);
+
+                if (!matchesDeparture || !matchesArrival || !matchesDate || !withinTimeWindow || departureIndex > arrivalIndex) return false;
+
+                route.StartStationName = GetFullStationName(route, departureFrom);
+                route.EndStationName = GetFullStationName(route, arrivalTo);
+
+                if (departureIndex != -1)
+                {
+                    route.StartTime = TimeSpan.Parse(route.Stations[departureIndex].DepartureTime!);
+                }
+                if (arrivalIndex != -1)
+                {
+                    route.EndTime = TimeSpan.Parse(route.Stations[arrivalIndex].ArrivalTime!);
+                }
+
+                return true;
+            }));
+
+            TrainScheduleDataGrid.ItemsSource = filteredSchedules;
+            TrainScheduleDataGrid.Visibility = Visibility.Visible;
         }
 
+
+        private void ClearSearchCriteriaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DepartureFromTextBox.Text = string.Empty;
+            ArivalToTextBox.Text = string.Empty;
+            DepartureDatePicker.Text = string.Empty;
+            DepartureHourCB.Text = string.Empty;
+
+            TrainScheduleDataGrid.Visibility = Visibility.Collapsed;
+        }
 
         private void LoadTrainSchedules()
         {
@@ -82,6 +133,8 @@ namespace ProjektLAB.TrainService.Pages
                 string time = i.ToString() + ":00";
                 DepartureHourCB.Items.Add(time);
             }
+
+            DepartureDatePicker.SelectedDate = DateTime.Now;
         }
 
     }

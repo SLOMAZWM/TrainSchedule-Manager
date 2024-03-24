@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
 
       xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages"
       mc:Ignorable="d" 
@@ -14,6 +15,7 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
 
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -28,34 +30,47 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
 
                 <Label Content="Wyjazd z:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
-                <TextBox x:Name="DepartureFromTextBox" Style="{StaticResource InputStyle}" Width="100" TextChanged="OnSearchCriteriaChanged"/>
+                <TextBox x:Name="DepartureFromTextBox" Style="{StaticResource InputStyle}" Width="100" Foreground="White"/>
 
                 <Label Content="Przyjazd do:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
-                <TextBox x:Name="ArivalToTextBox" Style="{StaticResource InputStyle}" Width="100" TextChanged="OnSearchCriteriaChanged"/>
+                <TextBox x:Name="ArivalToTextBox" Style="{StaticResource InputStyle}" Width="100" Foreground="White"/>
 
                 <Label Content="Data wyjazdu:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
-                <DatePicker x:Name="DepartureDatePicker" Style="{StaticResource GetDateFromUser}" SelectedDateChanged="OnSearchCriteriaChanged"/>
+                <DatePicker x:Name="DepartureDatePicker" Style="{StaticResource GetDateFromUser}" Foreground="White"/>
 
                 <Label Content="Godzina wyjazdu:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
-                <ComboBox x:Name="DepartureHourCB" Style="{StaticResource SelectUser}" SelectionChanged="OnSearchCriteriaChanged"/>
-
-                <Label Content="Numer Pociągu:" Style="{StaticResource NavigationTopLabel}" Grid.Row="0"/>
-                <TextBox x:Name="TrainNumberTxt" Style="{StaticResource InputStyle}" Width="100" Height="25" TextChanged="OnSearchCriteriaChanged"/>
+                <ComboBox x:Name="DepartureHourCB" Style="{StaticResource SelectUser}" Foreground="White"/>
 
             </StackPanel>
 
-            <Separator Grid.Row="2" Background="#E8DDB5"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10">
+                <Button Style="{StaticResource NavigationButton}" Background="Gray" Click="SearchCriteriaBtn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="TextBoxSearch" Margin="0,8,2,0"/>
+                        <Label Content="Wyszukaj" Style="{StaticResource LabelButton}" />
+                    </StackPanel>
+                </Button>
 
-            <DataGrid x:Name="TrainScheduleDataGrid" Grid.Row="3" AutoGenerateColumns="False" Margin="11" Style="{StaticResource CustomDataGridStyle}">
+                <Button Style="{StaticResource NavigationButton}" Background="Gray" Click="ClearSearchCriteriaBtn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="LockReset" Margin="0,8,2,0" />
+                        <Label Content="Wyczyść" Style="{StaticResource LabelButton}" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <Separator Grid.Row="3" Background="#E8DDB5"/>
+
+            <DataGrid x:Name="TrainScheduleDataGrid" Grid.Row="4" AutoGenerateColumns="False" Margin="11" Style="{StaticResource StylizedDataGrid}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Stacja początkowa" Binding="{Binding Route.StartStationName}" />
-                    <DataGridTextColumn Header="Stacja końcowa" Binding="{Binding Route.EndStationName}" />
+                    <DataGridTextColumn Header="Przystanek początkowy" Binding="{Binding Route.StartStationName}" />
+                    <DataGridTextColumn Header="Przystanek końcowy" Binding="{Binding Route.EndStationName}" />
                     <DataGridTextColumn Header="Godzina rozpoczęcia" Binding="{Binding Route.StartTimeString}" />
                     <DataGridTextColumn Header="Godzina zakończenia" Binding="{Binding Route.EndTimeString}" />
                     <DataGridTextColumn Header="Opóźnienia" Binding="{Binding DelayTime}" />
                     <DataGridTextColumn Header="Data wyjazdu" Binding="{Binding Route.StartDate, StringFormat=\{0:dd/MM/yyyy\}}" />
                     <DataGridTextColumn Header="Przewoźnik" Binding="{Binding Train.Carrier}" />
-                    <DataGridTextColumn Header="Rodzaj Pociągu" Binding="{Binding Train.TrainType}" />
+                    <!--<DataGridTextColumn Header="Rodzaj Pociągu" Binding="{Binding Train.TrainType}" />-->
                     <DataGridTextColumn Header="Numer pociągu" Binding="{Binding Train.TrainNumber}" />
                 </DataGrid.Columns>
             </DataGrid>

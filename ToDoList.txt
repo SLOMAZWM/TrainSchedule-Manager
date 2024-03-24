@@ -16,10 +16,7 @@ c) rodzaj wagonow
 
 Aktualne zadanie:
 
-b) odświeżanie datagrid'a, po wykonanych akcjach (dodawanie, usuwanie, edytowanie rekordów w bazie danych)
 c) szczegolowe informacje - pokazywanie trasy i wszystkich przystankow
-f) stworzenie wyszukiwarki, ktora uwzgledni przystanki pomiędzy stacją początkową a końcową (jak wyświetlić wyniki w datagrid?)
-f1)Stworzenie nowego datagrida pod wyszukiwarke
 g) zabezpieczenie haseł w bazie danych pracowników (user = hashowane hasła)
 
 LISTA KOLOROW:

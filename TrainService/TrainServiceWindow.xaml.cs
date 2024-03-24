@@ -27,7 +27,7 @@ namespace ProjektLAB.TrainService
         {
             InitializeComponent();
             User = loggedUser;
-        PageDictionary = InitializePage();
+            PageDictionary = InitializePage();
         }
 
         private Dictionary<string, Page> InitializePage()
@@ -70,6 +70,7 @@ namespace ProjektLAB.TrainService
         {
             if (sender is Button button && button.Tag is string pageKey)
             {
+                PageDictionary = InitializePage();
                 Page pageToNavigate;
                 if (PageDictionary.TryGetValue(pageKey, out pageToNavigate!))
                  { 
