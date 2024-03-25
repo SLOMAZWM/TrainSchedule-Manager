@@ -4,14 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages.DetailWindow"
-        mc:Ignorable="d"
-                                 xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
 
-        Title="ShowDetailWindow" Height="300" Width="600">
+        mc:Ignorable="d"
+
+        Title="ShowDetailWindow" Height="650" Width="1000">
     <Border Background="Gray" MouseDown="Border_MouseDown">
         <Grid>
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -24,7 +26,7 @@
 
             <Label Style="{StaticResource TopLabel}" Content="Szczegóły Trasy" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
 
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="5,5,0,0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource TextInput}" Text="Przystanek początkowy: " Width="175"/>
                     <TextBlock x:Name="FirstStationNameTextBlock" Style="{StaticResource TextInput}" Text="Nazwa przystanku" Foreground="White"/>
@@ -36,11 +38,34 @@
              
             </StackPanel>
 
-            <Border Background="#E8DDB5" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid>
-                    
-                </Grid>
-            </Border>
+            <StackPanel Orientation="Vertical" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20,5,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextInput}" Text="Czas początkowy: " Width="175"/>
+                    <TextBlock x:Name="StartTimeTextBlock" Style="{StaticResource TextInput}" Text="czas" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextInput}" Text="Czas zakończenia: " Width="175"/>
+                    <TextBlock x:Name="EndTimeTextBlock" Style="{StaticResource TextInput}" Text="czas" Foreground="White"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,20,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextInput}" Text="Numer pociągu: " Width="175"/>
+                    <TextBlock x:Name="Carrier" Style="{StaticResource TextInput}" Text="numer" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextInput}" Text="Szczegóły pociągu: " Width="175"/>
+                    <Button Style="{StaticResource NavigationButton}" Margin="5,15,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="CarSeat" Margin="0,8,2,0"/>
+                            <Label Style="{StaticResource LabelButton}" Content="Wyświetł"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+            <Frame x:Name="ContentDetailFrame" Grid.Row="2"/>
 
         </Grid>
     </Border>

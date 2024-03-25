@@ -16,6 +16,8 @@ c) rodzaj wagonow
 
 Aktualne zadanie:
 
+1) poprawić zarządzanie stacjami - dowolny wpisana stacja
+
 c) szczegolowe informacje - pokazywanie trasy i wszystkich przystankow
 
 LISTA KOLOROW:
