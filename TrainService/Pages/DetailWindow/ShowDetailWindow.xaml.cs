@@ -20,16 +20,23 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
     /// </summary>
     public partial class ShowDetailWindow : Window
     {
-        private TrainSchedule selectedSchedule = new TrainSchedule();
+        private TrainSchedule selectedSchedule;
         public ShowDetailWindow(TrainSchedule selectedSch)
         {
             InitializeComponent();
             selectedSchedule = selectedSch;
+            InitializeData();
         }
 
         private void InitializeData()
         {
+            FirstStationNameTextBlock.Text = selectedSchedule.Route!.Stations[0].Name ?? "N/A";
+            LastStationNameTextBlock.Text = selectedSchedule.Route.Stations[selectedSchedule.Route.Stations.Count - 1].Name ?? "N/A";
+            StartTimeTextBlock.Text = selectedSchedule.Route.Stations[0].ArrivalTime ?? "N/A";
+            EndTimeTextBlock.Text = selectedSchedule.Route.Stations[selectedSchedule.Route.Stations.Count - 1].DepartureTime!.ToString() ?? "N/A";
 
+            ShowRouteDetailPage RouteDetail = new ShowRouteDetailPage(selectedSchedule);
+            ContentDetailFrame.Navigate(RouteDetail);
         }
 
         private void Border_MouseDown(object sender, MouseEventArgs e)
@@ -40,6 +47,11 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void ShowTrainDetailsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDetailFrame.Navigate(new ShowTrainDetailsPage(selectedSchedule, this));
         }
     }
 }

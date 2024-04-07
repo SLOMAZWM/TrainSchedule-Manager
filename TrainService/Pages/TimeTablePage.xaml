@@ -61,7 +61,7 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
 
             <Separator Grid.Row="3" Background="#E8DDB5"/>
 
-            <DataGrid x:Name="TrainScheduleDataGrid" Grid.Row="4" AutoGenerateColumns="False" Margin="11" Style="{StaticResource StylizedDataGrid}">
+            <DataGrid x:Name="TrainScheduleDataGrid" Grid.Row="4" AutoGenerateColumns="False" Margin="11" Style="{StaticResource StylizedDataGrid}" MouseDoubleClick="TrainScheduleDataGrid_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Przystanek początkowy" Binding="{Binding Route.StartStationName}" />
                     <DataGridTextColumn Header="Przystanek końcowy" Binding="{Binding Route.EndStationName}" />
@@ -70,7 +70,6 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                     <DataGridTextColumn Header="Opóźnienia" Binding="{Binding DelayTime}" />
                     <DataGridTextColumn Header="Data wyjazdu" Binding="{Binding Route.StartDate, StringFormat=\{0:dd/MM/yyyy\}}" />
                     <DataGridTextColumn Header="Przewoźnik" Binding="{Binding Train.Carrier}" />
-                    <!--<DataGridTextColumn Header="Rodzaj Pociągu" Binding="{Binding Train.TrainType}" />-->
                     <DataGridTextColumn Header="Numer pociągu" Binding="{Binding Train.TrainNumber}" />
                 </DataGrid.Columns>
             </DataGrid>

@@ -1,5 +1,6 @@
 ﻿using ProjektLAB.TrainService.Class;
 using ProjektLAB.TrainService.Class.ServiceClass;
+using ProjektLAB.TrainService.Pages.DetailWindow;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -135,6 +136,15 @@ namespace ProjektLAB.TrainService.Pages
             }
 
             DepartureDatePicker.SelectedDate = DateTime.Now;
+        }
+
+        private void TrainScheduleDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (TrainScheduleDataGrid.SelectedItem is TrainSchedule selectedSchedule)
+            {
+                ShowDetailWindow detailWindow = new ShowDetailWindow(selectedSchedule);
+                detailWindow.Show();
+            }
         }
 
     }
