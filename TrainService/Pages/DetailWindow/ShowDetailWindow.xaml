@@ -24,7 +24,7 @@
                 </Button>
             </StackPanel>
 
-            <Label Style="{StaticResource TopLabel}" Content="Szczegóły Trasy" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
+            <Label Style="{StaticResource TopLabel}" Content="Szczegóły Trasy" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="5,5,0,0">
                 <StackPanel Orientation="Horizontal">

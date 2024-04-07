@@ -29,6 +29,7 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
             InitializeComponent();
             selectedSchedule = selectedSch;
             showDetailWindow = DetailWindow;
+            this.DataContext = selectedSchedule;
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)

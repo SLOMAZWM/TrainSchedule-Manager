@@ -10,9 +10,17 @@
       d:DesignHeight="450" d:DesignWidth="800"
 Title="HomePage">
 
-    <Border Background="Gray" CornerRadius="20" >
+    <Border Background="Gray" CornerRadius="20">
 
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Separator Grid.Row="0" VerticalAlignment="Top" Background="#E8DDB5"/>
+
 
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Grid.Row="0">
                 <Button Style="{StaticResource topButton}" Click="ExitBtn_Click">
@@ -20,6 +28,48 @@ Title="HomePage">
                 </Button>
             </StackPanel>
 
+            <Label Content="Szczegóły pociągu" Style="{StaticResource TopLabel}" Grid.Row="0" FontSize="32" Margin="0,10,0,0"/>
+            <Label Content="{Binding Train.TrainNumber}" Style="{StaticResource TopLabel}" Grid.Row="1" Margin="0,5,0,0" FontSize="32"/>
+
+            <StackPanel Orientation="Vertical" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                    <TextBlock Text="Przewoźnik: " Style="{StaticResource UserInformation}" Width="200"/>
+                    <TextBlock Text="{Binding Train.Carrier}" Style="{StaticResource UserInformation}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Typ pociągu: " Style="{StaticResource UserInformation}" Width="200"/>
+                    <TextBlock Text="{Binding Train.TrainType}" Style="{StaticResource UserInformation}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Liczba siedzeń: " Style="{StaticResource UserInformation}" Width="200"/>
+                    <TextBlock Text="{Binding Train.NumberOfSeats}" Style="{StaticResource UserInformation}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Przedziałowe wagony: " Style="{StaticResource UserInformation}" Width="200"/>
+                    <TextBlock Text="{Binding Train.CompartmentCar, Converter={StaticResource BooleanToPolishWordConverter}}" Style="{StaticResource UserInformation}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Bezprzedziałowe wagony: " Style="{StaticResource UserInformation}" Width="200"/>
+                    <TextBlock Text="{Binding Train.OpenCar, Converter={StaticResource BooleanToPolishWordConverter}}" Style="{StaticResource UserInformation}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Wagony z łóźkiem: " Style="{StaticResource UserInformation}" Width="200"/>
+                    <TextBlock Text="{Binding Train.SleepingCar, Converter={StaticResource BooleanToPolishWordConverter}}" Style="{StaticResource UserInformation}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="Maksymalna prędkość: " Style="{StaticResource UserInformation}" Width="200"/>
+                    <TextBlock Text="{Binding Train.MaxSpeed}" Style="{StaticResource UserInformation}"/>
+                </StackPanel>
+
+            </StackPanel>
+            
         </Grid>
 
     </Border>
