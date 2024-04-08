@@ -36,6 +36,7 @@ namespace ProjektLAB.TrainService.Pages
             trainSchedules = new ObservableCollection<TrainSchedule>();
             LoadTrainSchedules();
             TrainScheduleDataGrid.Visibility = Visibility.Collapsed;
+            SeeDetailsBtn.Visibility = Visibility.Collapsed;
         }
 
         private bool IsStationOnRoute(Route route, string stationPartialName, out int stationIndex)
@@ -106,6 +107,7 @@ namespace ProjektLAB.TrainService.Pages
                 return true;
             }));
 
+            SeeDetailsBtn.Visibility = Visibility.Visible;
             TrainScheduleDataGrid.ItemsSource = filteredSchedules;
             TrainScheduleDataGrid.Visibility = Visibility.Visible;
         }
@@ -119,6 +121,7 @@ namespace ProjektLAB.TrainService.Pages
             DepartureHourCB.Text = string.Empty;
 
             TrainScheduleDataGrid.Visibility = Visibility.Collapsed;
+            SeeDetailsBtn.Visibility = Visibility.Collapsed;
         }
 
         private void LoadTrainSchedules()
@@ -143,7 +146,20 @@ namespace ProjektLAB.TrainService.Pages
             if (TrainScheduleDataGrid.SelectedItem is TrainSchedule selectedSchedule)
             {
                 ShowDetailWindow detailWindow = new ShowDetailWindow(selectedSchedule);
-                detailWindow.Show();
+                detailWindow.ShowDialog();
+            }
+        }
+
+        private void SeeDetailsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (TrainScheduleDataGrid.SelectedItem is TrainSchedule selectedSchedule)
+            {
+                ShowDetailWindow detailWindow = new ShowDetailWindow(selectedSchedule);
+                detailWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Wybierz trasę do wyświetlenia jej szczegółów", "Błąd wyboru", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

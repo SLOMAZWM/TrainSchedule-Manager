@@ -1,22 +1,6 @@
-﻿1. Wyswietlanie aktualnych odjazdow i przyjazdow
-a) umozliwienie uzytkownikom przegladania aktualnych info o planowanych odjazdach i przyjazdach pociagow na roznych stacjach, wraz z przystankami
+﻿Przesiadki - implementacja logiki
 
-2. Wyszukiwanie polaczen pomiedzy stacjami (3 stacje) z uwzglednieniem daty godziny i rodzaju pociagu
-
-3. Info o peronach w jakich przyjedzie, lub odjedzie pociag
-
-4. Powiadomienia o opoznieniach - randomizacja
-
-5. Szczegolowe info na temat pociagu
-a) typ pociagu
-b) nr pociagu
-c) rodzaj wagonow
-
-6. Dodawanie nowych tras jako pracownicy
-
-Aktualne zadanie:
-
-c) szczegolowe informacje - informacje o pociagu, legenda do kolorkow w wyswietlaniu trasy
+Legenda do szczegolow trasy
 
 LISTA KOLOROW:
 

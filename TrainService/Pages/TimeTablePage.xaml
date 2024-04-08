@@ -57,6 +57,13 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                         <Label Content="Wyczyść" Style="{StaticResource LabelButton}" />
                     </StackPanel>
                 </Button>
+
+                <Button x:Name="SeeDetailsBtn" Style="{StaticResource NavigationButton}" Background="Gray" Click="SeeDetailsBtn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="WindowOpen" Margin="0,8,2,0" />
+                        <Label Content="Szczegóły trasy" Style="{StaticResource LabelButton}" />
+                    </StackPanel>
+                </Button>
             </StackPanel>
 
             <Separator Grid.Row="3" Background="#E8DDB5"/>
