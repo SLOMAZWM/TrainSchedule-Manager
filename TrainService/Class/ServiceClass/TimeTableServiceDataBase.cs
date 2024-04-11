@@ -72,18 +72,18 @@ ORDER BY
                             trainSchedule = new TrainSchedule
                             {
                                 IDTrainSchedule = trainScheduleID,
-                                DelayTime = reader["DelayTime"]?.ToString(),
+                                DelayTime = reader["DelayTime"]?.ToString() ?? "Brak informacji z bazy danych",
                                 Train = new Train
                                 {
-                                    IDTrain = (int?)reader["IDTrain"],
-                                    TrainNumber = reader["TrainNumber"]?.ToString(),
-                                    Carrier = reader["Carrier"]?.ToString(),
-                                    TrainType = reader["TrainType"]?.ToString(),
-                                    NumberOfSeats = (int?)reader["NumberOfSeats"],
-                                    CompartmentCar = (bool?)reader["CompartmentCar"],
-                                    OpenCar = (bool?)reader["OpenCar"],
-                                    SleepingCar = (bool?)reader["SleepingCar"],
-                                    MaxSpeed = (int?)reader["MaxSpeed"]
+                                    IDTrain = (int)reader["IDTrain"],
+                                    TrainNumber = reader["TrainNumber"].ToString() ?? "Brak informacji z bazy danych",
+                                    Carrier = reader["Carrier"].ToString() ?? "Brak informacji z bazy danych",
+                                    TrainType = reader["TrainType"].ToString() ?? "Brak informacji z bazy danych",
+                                    NumberOfSeats = (int)reader["NumberOfSeats"],
+                                    CompartmentCar = (bool)reader["CompartmentCar"],
+                                    OpenCar = (bool)reader["OpenCar"],
+                                    SleepingCar = (bool)reader["SleepingCar"],
+                                    MaxSpeed = (int)reader["MaxSpeed"]
                                 },
                                 Route = new Route
                                 {
@@ -108,11 +108,11 @@ ORDER BY
                         var station = new Station
                         {
                             StationID = (int)reader["StationID"],
-                            Name = reader["StationName"]?.ToString(),
-                            ArrivalTime = reader["ArrivalTime"]?.ToString(),
-                            DepartureTime = reader["DepartureTime"]?.ToString(),
-                            PlatformNumber = (int?)reader["PlatformNumber"],
-                            TrackNumber = (int?)reader["TrackNumber"]
+                            Name = reader["StationName"]?.ToString() ?? "Brak informacji z bazy danych",
+                            ArrivalTime = reader["ArrivalTime"]?.ToString() ?? "Brak informacji z bazy danych",
+                            DepartureTime = reader["DepartureTime"]?.ToString() ?? "Brak informacji z bazy danych",
+                            PlatformNumber = (int)reader["PlatformNumber"],
+                            TrackNumber = (int)reader["TrackNumber"]
                         };
 
                         route!.Stations.Add(station);
@@ -123,8 +123,8 @@ ORDER BY
             foreach (var schedule in schedules)
             {
                 var stations = schedule.Route!.Stations.OrderBy(s => s.StationID).ToList();
-                schedule.Route.StartStationName = stations.FirstOrDefault()?.Name;
-                schedule.Route.EndStationName = stations.LastOrDefault()?.Name;
+                schedule.Route.StartStationName = stations.FirstOrDefault().Name ?? "Brak informacji z bazy danych";
+                schedule.Route.EndStationName = stations.LastOrDefault().Name ?? "Brak informacji z bazy danych";
             }
 
             return schedules;

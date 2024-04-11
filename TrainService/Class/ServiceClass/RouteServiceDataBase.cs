@@ -29,7 +29,7 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
                     AddStationsToRoute(connection, transaction, routeId, route.Stations);
 
                   
-                    AddTrainSchedule(connection, transaction, train.IDTrain.Value, routeId);
+                    AddTrainSchedule(connection, transaction, train.IDTrain, routeId);
 
                     transaction.Commit();
                     return true;

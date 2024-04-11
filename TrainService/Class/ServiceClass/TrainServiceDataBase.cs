@@ -29,14 +29,14 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
                         {
                             Train train = new Train()
                             {
-                                IDTrain = reader["IDTrain"] as int?,
-                                TrainNumber = reader["TrainNumber"]?.ToString(),
-                                Carrier = reader["Carrier"]?.ToString(),
-                                TrainType = reader["TrainType"]?.ToString(),
-                                NumberOfSeats = reader["NumberOfSeats"] as int?,
-                                CompartmentCar = reader["CompartmentCar"] as bool?,
-                                OpenCar = reader["OpenCar"] as bool?,
-                                SleepingCar = reader["SleepingCar"] as bool?
+                                IDTrain = (int)reader["IDTrain"],
+                                TrainNumber = reader["TrainNumber"].ToString() ?? "Brak informacji z bazy danych",
+                                Carrier = reader["Carrier"]?.ToString() ?? "Brak informacji z bazy danych",
+                                TrainType = reader["TrainType"].ToString() ?? "Brak informacji z bazy danych",
+                                NumberOfSeats = (int)reader["NumberOfSeats"],
+                                CompartmentCar = (bool)reader["CompartmentCar"],
+                                OpenCar = (bool)reader["OpenCar"],
+                                SleepingCar = (bool)reader["SleepingCar"]
                             };
 
                             trains.Add(train);
@@ -72,9 +72,9 @@ namespace ProjektLAB.TrainService.Class.ServiceClass
                         while (reader.Read())
                         {
                             train.IDTrain = reader.IsDBNull(reader.GetOrdinal("IDTrain")) ? 0 : reader.GetInt32(reader.GetOrdinal("IDTrain"));
-                            train.TrainNumber = reader["TrainNumber"].ToString();
-                            train.Carrier = reader["Carrier"].ToString();
-                            train.TrainType = reader["TrainType"].ToString();
+                            train.TrainNumber = reader["TrainNumber"].ToString() ?? "Brak informacji z bazy danych";
+                            train.Carrier = reader["Carrier"].ToString() ?? "Brak informacji z bazy danych";
+                            train.TrainType = reader["TrainType"].ToString() ?? "Brak informacji z bazy danych";
                             train.CompartmentCar = reader.IsDBNull(reader.GetOrdinal("CompartmentCar")) ? false : reader.GetBoolean(reader.GetOrdinal("CompartmentCar"));
                             train.OpenCar = reader.IsDBNull(reader.GetOrdinal("OpenCar")) ? false : reader.GetBoolean(reader.GetOrdinal("OpenCar"));
                             train.SleepingCar = reader.IsDBNull(reader.GetOrdinal("SleepingCar")) ? false : reader.GetBoolean(reader.GetOrdinal("SleepingCar"));
