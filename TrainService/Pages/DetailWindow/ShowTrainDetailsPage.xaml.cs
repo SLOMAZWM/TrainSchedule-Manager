@@ -22,12 +22,14 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
     public partial class ShowTrainDetailsPage : Page
     {
         private TrainSchedule selectedSchedule;
+        private User loggedUser;
         private ShowDetailWindow showDetailWindow;
 
-        public ShowTrainDetailsPage(TrainSchedule selectedSch, ShowDetailWindow DetailWindow)
+        public ShowTrainDetailsPage(TrainSchedule selectedSch, User user, ShowDetailWindow DetailWindow)
         {
             InitializeComponent();
             selectedSchedule = selectedSch;
+            loggedUser = user;
             showDetailWindow = DetailWindow;
             this.DataContext = selectedSchedule;
         }

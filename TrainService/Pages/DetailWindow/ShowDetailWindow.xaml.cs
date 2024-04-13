@@ -1,4 +1,5 @@
 ﻿using ProjektLAB.TrainService.Class;
+using ProjektLAB.UserClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,13 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
     public partial class ShowDetailWindow : Window
     {
         private TrainSchedule selectedSchedule;
-        public ShowDetailWindow(TrainSchedule selectedSch)
+        private User loggedUser;
+
+        public ShowDetailWindow(TrainSchedule selectedSch, User user)
         {
             InitializeComponent();
             selectedSchedule = selectedSch;
+            loggedUser = user;
             InitializeData();
         }
 
@@ -35,7 +39,7 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
             StartTimeTextBlock.Text = selectedSchedule.Route.Stations[0].ArrivalTime ?? "N/A";
             EndTimeTextBlock.Text = selectedSchedule.Route.Stations[selectedSchedule.Route.Stations.Count - 1].DepartureTime!.ToString() ?? "N/A";
 
-            ShowRouteDetailPage RouteDetail = new ShowRouteDetailPage(selectedSchedule);
+            ShowRouteDetailPage RouteDetail = new ShowRouteDetailPage(selectedSchedule, loggedUser);
             ContentDetailFrame.Navigate(RouteDetail);
         }
 
@@ -51,7 +55,7 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
 
         private void ShowTrainDetailsBtn_Click(object sender, RoutedEventArgs e)
         {
-            ContentDetailFrame.Navigate(new ShowTrainDetailsPage(selectedSchedule, this));
+            ContentDetailFrame.Navigate(new ShowTrainDetailsPage(selectedSchedule, loggedUser, this));
         }
     }
 }

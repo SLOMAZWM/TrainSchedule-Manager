@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProjektLAB.TrainService.Class;
 using ProjektLAB.TrainService.Class.ServiceClass;
+using ProjektLAB.UserClass;
 
 namespace ProjektLAB.TrainService.Pages.DetailWindow
 {
@@ -24,11 +25,34 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
     public partial class ShowRouteDetailPage : Page
     {
         private TrainSchedule currentSchedule;
-        public ShowRouteDetailPage(TrainSchedule selectedSchedule)
+        private User loggedUser;
+
+        public ShowRouteDetailPage(TrainSchedule selectedSchedule, User user)
         {
             InitializeComponent();
             currentSchedule = selectedSchedule;
             LoadRouteDetails();
+            loggedUser = user;
+        }
+
+        private void ManageTripBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (loggedUser != null && currentSchedule != null)
+            {
+                bool success = UserServiceDataBase.SaveUserRoute(loggedUser.Id, currentSchedule.IDTrainSchedule);
+                if (success)
+                {
+                    MessageBox.Show("Trasa została pomyślnie zapisana.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Nie udało się zapisać trasy.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Brak danych użytkownika lub trasy.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LoadRouteDetails()

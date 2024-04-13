@@ -43,18 +43,7 @@
 
             <Grid Grid.Row="1" Grid.Column="0">
 
-                <StackPanel>
-
-                    <Button x:Name="HomePageBtn" Tag="STRONA GŁÓWNA" Click="NavigationBtn_Click" Style="{StaticResource NavigationButton}" Margin="5,140,5,5">
-                    <Grid Width="140">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                        <Icon:PackIconMaterial Kind="Home" Margin="10,0,0,0" Grid.Column="0" VerticalAlignment="Center"/>
-                        <Label Style="{StaticResource LabelButton}" Content="Strona Główna" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="-10,0,0,0"/>
-                    </Grid>
-                </Button>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
                     <Button Style="{StaticResource NavigationButton}" Tag="ROZKŁAD JAZDY" Click="NavigationBtn_Click">
                     <Grid Width="140">
@@ -67,25 +56,25 @@
                     </Grid>
                 </Button>
 
-                    <Button x:Name="Schedule" Style="{StaticResource NavigationButton}" Tag="HARMONOGRAM" Click="NavigationBtn_Click">
+                    <Button x:Name="Schedule" Style="{StaticResource NavigationButton}" Tag="HISTORIA UŻYTKOWNIKA" Click="NavigationBtn_Click">
                         <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Icon:PackIconMaterial Grid.Column="0" Kind="CalendarAccount" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                            <Label Grid.Column="1" Style="{StaticResource LabelButton}" Content="Harmonogram" Margin="-10,0,0,0"/>
+                            <Label Grid.Column="1" Style="{StaticResource LabelButton}" Content="Historia" Margin="-10,0,0,0"/>
                         </Grid>
                     </Button>
 
-                    <Button x:Name="Stations" Style="{StaticResource NavigationButton}" Tag="STACJE" Click="NavigationBtn_Click">
+                    <Button x:Name="Stations" Style="{StaticResource NavigationButton}" Tag="ZARZĄDZANIE STACJAMI" Click="NavigationBtn_Click">
                         <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Icon:PackIconMaterial Kind="Train" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0"/>
-                            <Label Style="{StaticResource LabelButton}" Content="Stacje" Grid.Column="1" Margin="-10,0,0,0"/>
+                            <Label Style="{StaticResource LabelButton}" Content="Zarządzanie" Grid.Column="1" Margin="-10,0,0,0"/>
                         </Grid>
                     </Button>
 

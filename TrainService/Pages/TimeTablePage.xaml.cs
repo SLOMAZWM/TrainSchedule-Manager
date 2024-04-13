@@ -28,8 +28,9 @@ namespace ProjektLAB.TrainService.Pages
     public partial class TimeTablePage : Page
     {
         private ObservableCollection<TrainSchedule> trainSchedules;
+        public User loggedUser {  get; set; }
 
-        public TimeTablePage()
+        public TimeTablePage(User User)
         {
             InitializeComponent();
             InitializeTime();
@@ -37,6 +38,7 @@ namespace ProjektLAB.TrainService.Pages
             LoadTrainSchedules();
             TrainScheduleDataGrid.Visibility = Visibility.Collapsed;
             SeeDetailsBtn.Visibility = Visibility.Collapsed;
+            loggedUser = User;
         }
 
         private bool IsStationOnRoute(Route route, string stationPartialName, out int stationIndex)
@@ -145,7 +147,7 @@ namespace ProjektLAB.TrainService.Pages
         {
             if (TrainScheduleDataGrid.SelectedItem is TrainSchedule selectedSchedule)
             {
-                ShowDetailWindow detailWindow = new ShowDetailWindow(selectedSchedule);
+                ShowDetailWindow detailWindow = new ShowDetailWindow(selectedSchedule, loggedUser);
                 detailWindow.ShowDialog();
             }
         }
@@ -154,7 +156,7 @@ namespace ProjektLAB.TrainService.Pages
         {
             if (TrainScheduleDataGrid.SelectedItem is TrainSchedule selectedSchedule)
             {
-                ShowDetailWindow detailWindow = new ShowDetailWindow(selectedSchedule);
+                ShowDetailWindow detailWindow = new ShowDetailWindow(selectedSchedule, loggedUser);
                 detailWindow.ShowDialog();
             }
             else

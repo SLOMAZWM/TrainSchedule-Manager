@@ -1,0 +1,5 @@
+﻿Login: admin
+Haslo: Adminek123!
+
+Login: uzytkownik
+Haslo: Uzytkownik123!
