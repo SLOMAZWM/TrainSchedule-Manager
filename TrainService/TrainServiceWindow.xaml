@@ -46,17 +46,17 @@
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
                     <Button Style="{StaticResource NavigationButton}" Tag="ROZKŁAD JAZDY" Click="NavigationBtn_Click">
-                    <Grid Width="140">
+                        <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                        <Icon:PackIconMaterial Kind="Calendar" Margin="10,0,0,0" Grid.Column="0" VerticalAlignment="Center"/>
-                        <Label Style="{StaticResource LabelButton}" Content="Rozkład Jazdy" Grid.Column="1"/>
-                    </Grid>
-                </Button>
+                            <Icon:PackIconMaterial Kind="Calendar" Margin="10,0,0,0" Grid.Column="0" VerticalAlignment="Center"/>
+                            <Label Style="{StaticResource LabelButton}" Content="Rozkład Jazdy" Grid.Column="1"/>
+                        </Grid>
+                    </Button>
 
-                    <Button x:Name="Schedule" Style="{StaticResource NavigationButton}" Tag="HISTORIA UŻYTKOWNIKA" Click="NavigationBtn_Click">
+                    <Button x:Name="HistoryBtn" Style="{StaticResource NavigationButton}" Tag="HISTORIA UŻYTKOWNIKA" Click="NavigationBtn_Click" ToolTip="By sprawdzić historię konta - zaloguj się!" ToolTipService.ShowOnDisabled="True">
                         <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -67,7 +67,7 @@
                         </Grid>
                     </Button>
 
-                    <Button x:Name="Stations" Style="{StaticResource NavigationButton}" Tag="ZARZĄDZANIE STACJAMI" Click="NavigationBtn_Click">
+                    <Button x:Name="ManagementBtn" Style="{StaticResource NavigationButton}" Tag="ZARZĄDZANIE STACJAMI" Click="NavigationBtn_Click">
                         <Grid Width="140">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
@@ -79,6 +79,7 @@
                     </Button>
 
                 </StackPanel>
+
             </Grid>
 
         </Grid>

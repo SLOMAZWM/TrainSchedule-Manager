@@ -21,6 +21,7 @@ namespace ProjektLAB
         {
             get { return GetAgeFromBirthDay(); }
         }
+        public bool IsAdmin { get; set; } = false;
         public List<UserTravelHistory> TravelHistory { get; set; }
 
         public User()

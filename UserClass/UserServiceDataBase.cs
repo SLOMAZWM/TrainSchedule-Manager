@@ -26,7 +26,7 @@ namespace ProjektLAB.UserClass
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = @"INSERT INTO [dbo].[User] (Login, Password, First_Name, Last_Name, BirthDay) VALUES (@Login, @Password, @First_Name, @Last_Name, @BirthDay)";
+                    string query = @"INSERT INTO [dbo].[User] (Login, Password, First_Name, Last_Name, BirthDay, Admin_Permission) VALUES (@Login, @Password, @First_Name, @Last_Name, @BirthDay, @Admin_Permission)";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -35,6 +35,7 @@ namespace ProjektLAB.UserClass
                         cmd.Parameters.AddWithValue("@First_Name", user.First_Name);
                         cmd.Parameters.AddWithValue("@Last_Name", user.Last_Name);
                         cmd.Parameters.AddWithValue("@BirthDay", user.BirthDay);
+                        cmd.Parameters.AddWithValue("@Admin_Permission", user.IsAdmin);
 
                         try
                         {
@@ -67,7 +68,7 @@ namespace ProjektLAB.UserClass
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT Id, Login, Password, First_Name, Last_Name, BirthDay FROM [dbo].[User] WHERE Login = @Login";
+                string query = @"SELECT Id, Login, Password, First_Name, Last_Name, BirthDay, Admin_Permission FROM [dbo].[User] WHERE Login = @Login";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -91,7 +92,8 @@ namespace ProjektLAB.UserClass
                                         Password = reader["Password"].ToString() ?? "Brak odczytu z bazy danych!",
                                         First_Name = reader["First_Name"].ToString() ?? "Brak odczytu z bazy danych!",
                                         Last_Name = reader["Last_Name"].ToString() ?? "Brak odczytu z bazy danych!",
-                                        BirthDay = reader["BirthDay"].ToString() ?? "Brak odczytu z bazy danych!"
+                                        BirthDay = reader["BirthDay"].ToString() ?? "Brak odczytu z bazy danych!",
+                                        IsAdmin = (bool)reader["Admin_Permission"]
                                     };
                                     return user;
                                 }
@@ -107,7 +109,7 @@ namespace ProjektLAB.UserClass
             }
         }
 
-        public static bool SaveUserRoute(int userId, int trainScheduleId)
+        public static bool SaveUserRoute(int userId, int trainScheduleId, string startStation, string endStation)
         {
             if (!UserExists(userId) || !TrainScheduleExists(trainScheduleId))
             {
@@ -117,13 +119,16 @@ namespace ProjektLAB.UserClass
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                string query = @"INSERT INTO [dbo].[UserTravelHistory] 
+                                                 (UserID, TrainScheduleID, StartStation, EndStation) 
+                                                 VALUES (@UserID, @TrainScheduleID, @StartStation, @EndStation)";
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand(@"INSERT INTO [dbo].[UserTravelHistory] 
-                                                         (UserID, TrainScheduleID) 
-                                                         VALUES (@UserID, @TrainScheduleID)", conn))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@UserID", userId);
                     cmd.Parameters.AddWithValue("@TrainScheduleID", trainScheduleId);
+                    cmd.Parameters.AddWithValue("@StartStation", startStation);
+                    cmd.Parameters.AddWithValue("@EndStation", endStation);
 
                     try
                     {
@@ -146,12 +151,14 @@ namespace ProjektLAB.UserClass
             return false;
         }
 
+
         private static bool UserExists(int userId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                string query = @"SELECT COUNT(*) FROM [dbo].[User] WHERE Id = @Id";
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM [dbo].[User] WHERE Id = @Id", conn))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Id", userId);
                     int userCount = (int)cmd.ExecuteScalar();
@@ -164,8 +171,9 @@ namespace ProjektLAB.UserClass
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                string query = @"SELECT COUNT(*) FROM [dbo].[TrainSchedule] WHERE IDTrainSchedule = @IDTrainSchedule";
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM [dbo].[TrainSchedule] WHERE IDTrainSchedule = @IDTrainSchedule", conn))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@IDTrainSchedule", trainScheduleId);
                     int scheduleCount = (int)cmd.ExecuteScalar();
@@ -182,26 +190,22 @@ namespace ProjektLAB.UserClass
                 string query = @"
 SELECT 
     th.UserTravelHistoryID, 
-    th.TrainScheduleID, 
+    th.TrainScheduleID,
     ts.RouteID, 
     r.DepartureDate, 
     t.TrainNumber, 
     t.Carrier,
-    sStart.Name AS StartStationName,
-    sEnd.Name AS EndStationName
+    th.StartStation,
+    th.EndStation
 FROM 
     UserTravelHistory th
     INNER JOIN TrainSchedule ts ON th.TrainScheduleID = ts.IDTrainSchedule
     INNER JOIN Route r ON ts.RouteID = r.RouteID
     INNER JOIN Train t ON ts.TrainID = t.IDTrain
-    INNER JOIN RouteStation rsStart ON r.RouteID = rsStart.RouteID AND rsStart.SequenceNumber = 1
-    INNER JOIN Stations sStart ON rsStart.StationID = sStart.StationID
-    INNER JOIN RouteStation rsEnd ON r.RouteID = rsEnd.RouteID
-    INNER JOIN Stations sEnd ON rsEnd.StationID = sEnd.StationID AND rsEnd.SequenceNumber = (SELECT MAX(SequenceNumber) FROM RouteStation WHERE RouteID = r.RouteID)
 WHERE 
     th.UserID = @UserID
 ORDER BY 
-    r.DepartureDate DESC";
+    r.DepartureDate DESC;";
 
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -212,29 +216,25 @@ ORDER BY
                     {
                         while (reader.Read())
                         {
-                            var route = new Route
-                            {
-                                RouteID = reader.GetInt32(reader.GetOrdinal("RouteID")),
-                                StartDate = reader.GetDateTime(reader.GetOrdinal("DepartureDate")),
-                                StartStationName = reader.GetString(reader.GetOrdinal("StartStationName")),
-                                EndStationName = reader.GetString(reader.GetOrdinal("EndStationName"))
-                            };
-
-                            var train = new Train
-                            {
-                                TrainNumber = reader.GetString(reader.GetOrdinal("TrainNumber")),
-                                Carrier = reader.IsDBNull(reader.GetOrdinal("Carrier")) ? null : reader.GetString(reader.GetOrdinal("Carrier"))
-                            };
-
-                            UserTravelHistory history = new UserTravelHistory
+                            var history = new UserTravelHistory
                             {
                                 UserTravelHistoryID = reader.GetInt32(reader.GetOrdinal("UserTravelHistoryID")),
                                 Schedule = new TrainSchedule
                                 {
                                     IDTrainSchedule = reader.GetInt32(reader.GetOrdinal("TrainScheduleID")),
-                                    Train = train,
-                                    Route = route
-                                }
+                                    Route = new Route
+                                    {
+                                        RouteID = reader.GetInt32(reader.GetOrdinal("RouteID")),
+                                        StartDate = reader.GetDateTime(reader.GetOrdinal("DepartureDate")),
+                                    },
+                                    Train = new Train
+                                    {
+                                        TrainNumber = reader.GetString(reader.GetOrdinal("TrainNumber")),
+                                        Carrier = reader.IsDBNull(reader.GetOrdinal("Carrier")) ? null : reader.GetString(reader.GetOrdinal("Carrier")),
+                                    }
+                                },
+                                StartStation = reader.GetString(reader.GetOrdinal("StartStation")),
+                                EndStation = reader.GetString(reader.GetOrdinal("EndStation")),
                             };
                             history.InitializeStatus();
                             travelHistories.Add(history);

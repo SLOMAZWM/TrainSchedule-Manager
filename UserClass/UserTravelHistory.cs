@@ -1,10 +1,5 @@
 ﻿using ProjektLAB.TrainService.Class;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjektLAB.UserClass
 {
@@ -14,6 +9,8 @@ namespace ProjektLAB.UserClass
         public User TravelUser { get; set; }
         public TrainSchedule Schedule { get; set; }
         public string Status { get; set; }
+        public string StartStation { get; set; } 
+        public string EndStation { get; set; } 
 
         public UserTravelHistory()
         {
@@ -21,22 +18,24 @@ namespace ProjektLAB.UserClass
             TravelUser = new User();
             Schedule = new TrainSchedule();
             Status = "Nieznany";
+            StartStation = string.Empty;
+            EndStation = string.Empty;
         }
 
         public void InitializeStatus()
         {
-            DateTime ScheduleDate = Schedule.Route.StartDate;
-            DateTime Today = DateTime.Now;
+            DateTime scheduleDate = Schedule.Route.StartDate;
+            DateTime today = DateTime.Now;
 
-            if(ScheduleDate > Today)
+            if (scheduleDate > today)
             {
                 Status = "Zaplanowana podróż";
             }
-            else if(ScheduleDate < Today)
+            else if (scheduleDate < today)
             {
                 Status = "Odbyta podróż";
             }
-            else if(ScheduleDate == Today)
+            else if (scheduleDate == today)
             {
                 Status = "Dzisiejsza podróż";
             }

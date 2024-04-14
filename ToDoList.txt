@@ -1,11 +1,13 @@
 ﻿Wymagania:
 
--Stworzenie wejscia dla goscia
--Stworzenie admina i uprawnien
+-Mozliwosc usuniecia planowanych podrozy
+-Ograniczenie rezerwacji (1 trasa = 1 rezerwacja)
+-Legenda dla detali w wyszukiwarce
 
 Opcjonalnie:
 
 -Polepszenie wygladu dla datagridow i page History
+-Wyszukiwarka dla historii uzytkownika
 
 Legenda do szczegolow trasy
 

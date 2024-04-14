@@ -86,13 +86,6 @@
                     </StackPanel>
                 </Button>
 
-                <Button Style="{StaticResource NavigationButton}" Background="DarkRed" Margin="10,0,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Cancel" Margin="0,7,2,0"/>
-                        <Label Content="Anuluj" Style="{StaticResource LabelButton}"/>
-                    </StackPanel>
-                </Button>
-
             </StackPanel>
             
         </Grid>

@@ -28,10 +28,40 @@ namespace ProjektLAB.TrainService
         {
             InitializeComponent();
             User = loggedUser;
-            PageDictionary = InitializePage();
+            if(User.IsAdmin == false)
+            {
+                InitializeUserLogin();
+                PageDictionary = InitializePageForUser();
+            }
+            else if(User.IsAdmin == true)
+            {
+                PageDictionary = InitializePageForAdmin();
+            }
+            else
+            {
+                PageDictionary = new Dictionary<string, Page>();
+                MessageBox.Show("Błąd odczytu uprawnień z bazy danych!", "Błąd bazy danych", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
 
-        private Dictionary<string, Page> InitializePage()
+        public TrainServiceWindow() //Guest Login
+        {
+            InitializeComponent();
+            User = null!;
+            InitializeGuestLogin();
+            PageDictionary = InitializePageDictionaryForGuest();
+        }
+
+        private Dictionary<string, Page> InitializePageForUser()
+        {
+            Dictionary<string, Page> pages = new Dictionary<string, Page>();
+            pages.Add("ROZKŁAD JAZDY", new TimeTablePage(User));
+            pages.Add("HISTORIA UŻYTKOWNIKA", new UserHistoryPage(User));
+            return pages;
+        }
+
+        private Dictionary<string, Page> InitializePageForAdmin()
         {
             Dictionary<string, Page> pages = new Dictionary<string, Page>();
             pages.Add("ROZKŁAD JAZDY", new TimeTablePage(User));
@@ -40,20 +70,25 @@ namespace ProjektLAB.TrainService
             return pages;
         }
 
-        public TrainServiceWindow() //Guest Login
+        private Dictionary<string, Page> InitializePageDictionaryForGuest()
         {
-            InitializeComponent();
-            User = null;
-            //InitializeGuestLogin();
-            PageDictionary = InitializePage();
+            Dictionary<string, Page> pages = new Dictionary<string, Page>();
+
+            pages.Add("ROZKŁAD JAZDY", new TimeTablePage(User));
+
+            return pages;
+        }
+
+        private void InitializeUserLogin()
+        {
+            ManagementBtn.Visibility = Visibility.Hidden;
         }
 
         private void InitializeGuestLogin()
         {
-            Schedule.IsEnabled = false;
-            Stations.IsEnabled = false;
-            Schedule.Background = new SolidColorBrush(Colors.Gray);
-            Stations.Background = new SolidColorBrush(Colors.Gray);
+            HistoryBtn.IsEnabled = false;
+            ManagementBtn.Visibility = Visibility.Collapsed;
+            HistoryBtn.Background = new SolidColorBrush(Colors.Gray);
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -73,12 +108,39 @@ namespace ProjektLAB.TrainService
         {
             if (sender is Button button && button.Tag is string pageKey)
             {
-                PageDictionary = InitializePage();
-                Page pageToNavigate;
-                if (PageDictionary.TryGetValue(pageKey, out pageToNavigate!))
-                 { 
-                    ContentFrame.Navigate(pageToNavigate);
-                    TitleLbl.Content = pageKey;
+                if(User != null && User.IsAdmin == false)
+                {
+                    PageDictionary = InitializePageForUser();
+                    Page pageToNavigate;
+                    if (PageDictionary.TryGetValue(pageKey, out pageToNavigate!))
+                    {
+                        ContentFrame.Navigate(pageToNavigate);
+                        TitleLbl.Content = pageKey;
+                    }
+                }
+                else if(User != null && User.IsAdmin == true)
+                {
+                    PageDictionary = InitializePageForAdmin();
+                    Page pageToNavigate;
+                    if (PageDictionary.TryGetValue(pageKey, out pageToNavigate!))
+                    {
+                        ContentFrame.Navigate(pageToNavigate);
+                        TitleLbl.Content = pageKey;
+                    }
+                }
+                else if(User == null)
+                {
+                    PageDictionary = InitializePageDictionaryForGuest();
+                    Page pageToNavigate;
+                    if (PageDictionary.TryGetValue(pageKey, out pageToNavigate!))
+                    {
+                        ContentFrame.Navigate(pageToNavigate);
+                        TitleLbl.Content = pageKey;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Błąd odczytu uprawnień z bazy danych przy wczytywaniu nawigacji", "Błąd bazy danych", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

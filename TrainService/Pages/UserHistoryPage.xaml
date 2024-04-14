@@ -45,14 +45,14 @@
                             <GridViewColumn Header="Stacja początkowa">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Schedule.Route.StartStationName}" TextAlignment="Center" />
+                                        <TextBlock Text="{Binding StartStation}" TextAlignment="Center" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn Header="Stacja końcowa">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Schedule.Route.EndStationName}" TextAlignment="Center" />
+                                        <TextBlock Text="{Binding EndStation}" TextAlignment="Center" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -61,7 +61,7 @@
                 </ListView>
 
 
-                <Border Background="#4E4E4E" Grid.Column="1" Margin="50,0,0,0" CornerRadius="40" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border Background="#4E4E4E" Grid.Column="1" Margin="20,0,0,0" CornerRadius="40" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -71,28 +71,28 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Content="Dane użytkownika" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0,0,0,20"/>
+                        <Label Grid.Row="0" Content="Dane użytkownika" HorizontalAlignment="Center" FontSize="20" Foreground="White" Margin="0,0,0,10"/>
 
                         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                            <TextBlock Text="Login: " Style="{StaticResource UserInformation}" FontSize="18"/>
-                            <TextBlock Text="{Binding Login}" Style="{StaticResource UserInformation}" FontSize="18"/>
+                            <TextBlock Text="Login: " Style="{StaticResource UserInformation}" FontSize="16"/>
+                            <TextBlock Text="{Binding Login}" Style="{StaticResource UserInformation}" FontSize="16"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                            <TextBlock Text="Imię i Nazwisko: " Style="{StaticResource UserInformation}" FontSize="18"/>
-                            <TextBlock Text="{Binding First_Name}" Style="{StaticResource UserInformation}" FontSize="18"/>
-                            <TextBlock Text=" " Style="{StaticResource UserInformation}" FontSize="18"/>
-                            <TextBlock Text="{Binding Last_Name}" Style="{StaticResource UserInformation}" FontSize="18"/>
+                            <TextBlock Text="Imię i Nazwisko: " Style="{StaticResource UserInformation}" FontSize="16"/>
+                            <TextBlock Text="{Binding First_Name}" Style="{StaticResource UserInformation}" FontSize="16"/>
+                            <TextBlock Text=" " Style="{StaticResource UserInformation}" FontSize="16"/>
+                            <TextBlock Text="{Binding Last_Name}" Style="{StaticResource UserInformation}" FontSize="16"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                            <TextBlock Text="Data urodzenia: " Style="{StaticResource UserInformation}" FontSize="18"/>
-                            <TextBlock Text="{Binding BirthDay}" Style="{StaticResource UserInformation}" FontSize="18"/>
+                            <TextBlock Text="Data urodzenia: " Style="{StaticResource UserInformation}" FontSize="16"/>
+                            <TextBlock Text="{Binding BirthDay}" Style="{StaticResource UserInformation}" FontSize="16"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                            <TextBlock Text="Wiek: " Style="{StaticResource UserInformation}" FontSize="18"/>
-                            <TextBlock Text="{Binding Age}" Style="{StaticResource UserInformation}" FontSize="18"/>
+                            <TextBlock Text="Wiek: " Style="{StaticResource UserInformation}" FontSize="16"/>
+                            <TextBlock Text="{Binding Age}" Style="{StaticResource UserInformation}" FontSize="16"/>
                         </StackPanel>
                     </Grid>
                 </Border>

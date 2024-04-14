@@ -37,9 +37,9 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
 
         private void ManageTripBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (loggedUser != null && currentSchedule != null)
+            if (loggedUser != null)
             {
-                bool success = UserServiceDataBase.SaveUserRoute(loggedUser.Id, currentSchedule.IDTrainSchedule);
+                bool success = UserServiceDataBase.SaveUserRoute(loggedUser.Id, currentSchedule.IDTrainSchedule, currentSchedule.Route.StartStationName, currentSchedule.Route.EndStationName);
                 if (success)
                 {
                     MessageBox.Show("Trasa została pomyślnie zapisana.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -51,7 +51,7 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
             }
             else
             {
-                MessageBox.Show("Brak danych użytkownika lub trasy.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Zarejestruj się lub zaloguj w celu zapisania trasy na swoim koncie!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
