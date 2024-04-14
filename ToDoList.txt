@@ -1,7 +1,5 @@
 ﻿Wymagania:
 
--Mozliwosc usuniecia planowanych podrozy
--Ograniczenie rezerwacji (1 trasa = 1 rezerwacja)
 -Legenda dla detali w wyszukiwarce
 
 Opcjonalnie:

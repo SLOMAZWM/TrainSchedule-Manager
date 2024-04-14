@@ -28,7 +28,7 @@ namespace ProjektLAB.TrainService.Pages
     public partial class TimeTablePage : Page
     {
         private ObservableCollection<TrainSchedule> trainSchedules;
-        public User loggedUser {  get; set; }
+        public User loggedUser { get; set; }
 
         public TimeTablePage(User User)
         {
@@ -56,24 +56,17 @@ namespace ProjektLAB.TrainService.Pages
 
         private void SearchCriteriaBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!this.IsLoaded) return;
+            if (!this.IsLoaded || !ValidateSearchCriteria()) return;
 
             var departureFrom = DepartureFromTextBox.Text.Trim();
             var arrivalTo = ArivalToTextBox.Text.Trim();
             var selectedDate = DepartureDatePicker.SelectedDate;
             var selectedHourString = DepartureHourCB.SelectedItem?.ToString();
 
-            if (string.IsNullOrWhiteSpace(departureFrom) || string.IsNullOrWhiteSpace(arrivalTo))
-            {
-                MessageBox.Show("Należy wprowadzić miejsce wyjazdu i miejsce przyjazdu.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             TimeSpan? selectedTime = null;
             if (!string.IsNullOrEmpty(selectedHourString))
             {
-                TimeSpan parsedTime;
-                if (TimeSpan.TryParse(selectedHourString, out parsedTime))
+                if (TimeSpan.TryParse(selectedHourString, out TimeSpan parsedTime))
                 {
                     selectedTime = parsedTime;
                 }
@@ -85,10 +78,8 @@ namespace ProjektLAB.TrainService.Pages
             var filteredSchedules = new ObservableCollection<TrainSchedule>(trainSchedules.Where(schedule =>
             {
                 var route = schedule.Route!;
-                int departureIndex, arrivalIndex;
-
-                bool matchesDeparture = IsStationOnRoute(route, departureFrom, out departureIndex);
-                bool matchesArrival = IsStationOnRoute(route, arrivalTo, out arrivalIndex);
+                bool matchesDeparture = IsStationOnRoute(route, departureFrom, out int departureIndex);
+                bool matchesArrival = IsStationOnRoute(route, arrivalTo, out int arrivalIndex);
                 bool matchesDate = !selectedDate.HasValue || route.StartDate.Date == selectedDate.Value.Date;
                 bool withinTimeWindow = !selectedTime.HasValue || (route.StartTime >= timeWindowStart && route.StartTime <= timeWindowEnd);
 
@@ -109,11 +100,24 @@ namespace ProjektLAB.TrainService.Pages
                 return true;
             }));
 
-            SeeDetailsBtn.Visibility = Visibility.Visible;
             TrainScheduleDataGrid.ItemsSource = filteredSchedules;
             TrainScheduleDataGrid.Visibility = Visibility.Visible;
+            SeeDetailsBtn.Visibility = filteredSchedules.Any() ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        private bool ValidateSearchCriteria()
+        {
+            var departureFrom = DepartureFromTextBox.Text.Trim();
+            var arrivalTo = ArivalToTextBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(departureFrom) || string.IsNullOrWhiteSpace(arrivalTo))
+            {
+                MessageBox.Show("Należy wprowadzić miejsce wyjazdu i miejsce przyjazdu.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+        }
 
         private void ClearSearchCriteriaBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -134,13 +138,13 @@ namespace ProjektLAB.TrainService.Pages
 
         private void InitializeTime()
         {
-            for (int i = 1; i <=24; i++)
+            for (int i = 1; i <= 24; i++)
             {
                 string time = i.ToString() + ":00";
                 DepartureHourCB.Items.Add(time);
             }
 
-            DepartureDatePicker.SelectedDate = DateTime.Now;
+            //DepartureDatePicker.SelectedDate = DateTime.Now; // For GitHub
         }
 
         private void TrainScheduleDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

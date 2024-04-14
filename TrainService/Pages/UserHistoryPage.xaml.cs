@@ -19,6 +19,8 @@ namespace ProjektLAB.TrainService.Pages
     /// <summary>
     /// Interaction logic for UserHistoryPage.xaml
     /// </summary>
+    /// 
+
     public partial class UserHistoryPage : Page
     {
         public User loggedUser { get; set; }
@@ -36,5 +38,25 @@ namespace ProjektLAB.TrainService.Pages
             var histories = UserServiceDataBase.GetTravelHistoriesByUserId(loggedUser.Id);
             TravelHistoryList.ItemsSource = histories;
         }
+
+
+        private void ExecuteDeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button?.Tag is UserTravelHistory history)
+            {
+                var result = UserServiceDataBase.DeletePlannedTravel(history.UserTravelHistoryID);
+                if (result)
+                {
+                    MessageBox.Show("Podróż została usunięta.", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LoadUserTravelHistories();
+                }
+                else
+                {
+                    MessageBox.Show("Nie udało się usunąć podróży.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
     }
 }

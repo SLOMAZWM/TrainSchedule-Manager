@@ -87,6 +87,43 @@
                 </Button>
 
             </StackPanel>
+
+            <Border BorderBrush="Black" BorderThickness="1" Background="#C6BB93" CornerRadius="40,0,0,0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+
+                <Grid>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Content="Legenda" Style="{StaticResource TopLabel}" FontSize="22" Foreground="White"/>
+
+                    <Separator Background="White" Grid.Row="1" Margin="0,5,0,5"/>
+
+                    <StackPanel Orientation="Vertical" Grid.Row="2" Margin="0,0,0,5">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Style="{StaticResource LegendEllipse}" Fill="Green"/>
+                            <TextBlock Text=" - Stacja na której wsiadasz" Style="{StaticResource UserAdditionalInformation}" FontSize="14" Foreground="White" Margin="0,0,5,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Style="{StaticResource LegendEllipse}" Fill="White"/>
+                            <TextBlock Text=" - Stacja przez którą przejeżdzasz" Style="{StaticResource UserAdditionalInformation}" FontSize="14" Foreground="White" Margin="0,0,5,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Style="{StaticResource LegendEllipse}" Fill="Red"/>
+                            <TextBlock Text=" - Stacja na której wysiadasz" Style="{StaticResource UserAdditionalInformation}" FontSize="14" Foreground="White" Margin="0,0,5,0"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    
+                </Grid>
+                
+            </Border>
             
         </Grid>
     </Border>

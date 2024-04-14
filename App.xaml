@@ -843,6 +843,12 @@ xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
+            
+            <Style TargetType="Ellipse" x:Key="LegendEllipse">
+                <Setter Property="Width" Value="10"/>
+                <Setter Property="Height" Value="10"/>
+                <Setter Property="Margin" Value="5,2,0,0"/>
+            </Style>
 
             <converters:BooleanToPolishWordConverter x:Key="BooleanToPolishWordConverter"/>
 

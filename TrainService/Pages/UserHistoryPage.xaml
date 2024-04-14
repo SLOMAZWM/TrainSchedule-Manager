@@ -5,9 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjektLAB.TrainService.Pages"
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:converters="clr-namespace:ProjektLAB.UserClass"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1180"
       Title="UserHistoryPage">
+
+    <Page.Resources>
+        <converters:StatusToBoolConverter x:Key="StatusToBoolConverter"/>
+    </Page.Resources>
 
     <Border Background="Gray" CornerRadius="20">
         <Grid Margin="10">
@@ -53,6 +58,26 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding EndStation}" TextAlignment="Center" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Akcje">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Usuń" Click="ExecuteDeleteBtn_Click" Tag="{Binding}" IsEnabled="{Binding Status, Converter={StaticResource StatusToBoolConverter}}">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Zaplanowane">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}" Value="NieZaplanowane">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

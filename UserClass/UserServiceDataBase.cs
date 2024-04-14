@@ -245,8 +245,56 @@ ORDER BY
             return travelHistories;
         }
 
+        public static bool IsRouteAlreadySaved(int userId, int trainScheduleId, string startStation, string endStation)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"
+        SELECT COUNT(1)
+        FROM [dbo].[UserTravelHistory]
+        WHERE UserID = @UserID
+        AND TrainScheduleID = @TrainScheduleID
+        AND StartStation = @StartStation
+        AND EndStation = @EndStation";
 
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+                    cmd.Parameters.AddWithValue("@TrainScheduleID", trainScheduleId);
+                    cmd.Parameters.AddWithValue("@StartStation", startStation);
+                    cmd.Parameters.AddWithValue("@EndStation", endStation);
 
+                    conn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
+        public static bool DeletePlannedTravel(int userTravelHistoryID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"DELETE FROM [dbo].[UserTravelHistory] WHERE UserTravelHistoryID = @UserTravelHistoryID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserTravelHistoryID", userTravelHistoryID);
+
+                    try
+                    {
+                        conn.Open();
+                        int result = cmd.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Wystąpił błąd podczas usuwania zaplanowanej podróży: {ex.Message}", "Błąd bazy danych", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            return false;
+        }
 
     }
 }

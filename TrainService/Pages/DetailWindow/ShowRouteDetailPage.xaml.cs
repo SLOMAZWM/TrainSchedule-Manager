@@ -39,14 +39,24 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
         {
             if (loggedUser != null)
             {
-                bool success = UserServiceDataBase.SaveUserRoute(loggedUser.Id, currentSchedule.IDTrainSchedule, currentSchedule.Route.StartStationName, currentSchedule.Route.EndStationName);
-                if (success)
+                bool isAlreadySaved = UserServiceDataBase.IsRouteAlreadySaved(loggedUser.Id, currentSchedule.IDTrainSchedule, currentSchedule.Route.StartStationName, currentSchedule.Route.EndStationName);
+
+                if (isAlreadySaved)
                 {
-                    MessageBox.Show("Trasa została pomyślnie zapisana.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Ta trasa została już zapisana na Twoim koncie.", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("Nie udało się zapisać trasy.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    bool success = UserServiceDataBase.SaveUserRoute(loggedUser.Id, currentSchedule.IDTrainSchedule, currentSchedule.Route.StartStationName, currentSchedule.Route.EndStationName);
+                    if (success)
+                    {
+                        MessageBox.Show("Trasa została pomyślnie zapisana.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie udało się zapisać trasy.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             else
@@ -54,6 +64,7 @@ namespace ProjektLAB.TrainService.Pages.DetailWindow
                 MessageBox.Show("Zarejestruj się lub zaloguj w celu zapisania trasy na swoim koncie!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         private void LoadRouteDetails()
         {
