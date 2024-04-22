@@ -37,7 +37,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2">
                 <Button x:Name="ExitBtn" VerticalAlignment="Top" Margin="10" Style="{StaticResource topButton}" Click="ExitBtn_Click">
-                    <Icon:PackIconMaterial Kind="ExitRun" Width="20" Height="20"/>
+                    <Icon:PackIconMaterial Kind="Logout" Width="20" Height="20"/>
                 </Button>
             </StackPanel>
 
@@ -78,6 +78,22 @@
                         </Grid>
                     </Button>
 
+                    
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
+                    
+                <Button x:Name="LogoutBtn" Style="{StaticResource NavigationButton}" Tag="WYLOGOWANIE" Click="LogoutBtn_Click">
+                    <Grid Width="140">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Icon:PackIconMaterial Kind="Logout" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0"/>
+                        <Label Style="{StaticResource LabelButton}" Content="Wyloguj" Grid.Column="1" Margin="-10,0,0,0"/>
+                    </Grid>
+                </Button>
                 </StackPanel>
 
             </Grid>

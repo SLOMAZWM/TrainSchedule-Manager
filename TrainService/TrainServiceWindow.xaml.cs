@@ -79,6 +79,15 @@ namespace ProjektLAB.TrainService
             return pages;
         }
 
+        private void LogoutBtn_Click(object sender, EventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            //Owner = mainWindow;
+            mainWindow.Show();
+            User = null!;
+            this.Close();
+        }
+
         private void InitializeUserLogin()
         {
             ManagementBtn.Visibility = Visibility.Hidden;

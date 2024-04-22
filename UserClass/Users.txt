@@ -3,3 +3,9 @@ Haslo: Adminek123!
 
 Login: uzytkownik
 Haslo: Uzytkownik123!
+
+wylogowanie//
+
+przy rejestracji - napraw historie
+
+przy rejestracji pokaz walidacje hasla

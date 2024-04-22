@@ -67,35 +67,40 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,2,10,10">
                             <TextBlock Style="{StaticResource TextInput}" Text="Login:" Width="125" Margin="0,13,0,0"/>
                             <TextBox x:Name="RegisterLoginTxt" Style="{StaticResource Input}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
                             <TextBlock Style="{StaticResource TextInput}" Text="Hasło:" Width="125" Margin="0,13,0,0"/>
-                            <PasswordBox x:Name="RegisterPasswordTxt" Style="{StaticResource InputPassword}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250"/>
+                            <PasswordBox x:Name="RegisterPasswordTxt" Style="{StaticResource InputPassword}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" MouseEnter="RegisterPasswordTxt_MouseEnter" MouseLeave="RegisterPasswordTxt_MouseLeave"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,2,10,2">
+                            <Label x:Name="RegisterPasswordLabel" Content="Hasło musi zawierać: Min. 1 duży znak, 1 mały znak, znak specjalny [!#@$%] i jedna cyfra" Foreground="Red" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10">
                             <TextBlock Style="{StaticResource TextInput}" Text="Imię:" Width="125" Margin="0,13,0,0"/>
                             <TextBox x:Name="First_NameTxt" Style="{StaticResource Input}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10">
+                        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10">
                             <TextBlock Style="{StaticResource TextInput}" Text="Nazwisko:" Width="125" Margin="0,13,0,0"/>
                             <TextBox x:Name="Last_NameTxt" Style="{StaticResource Input}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10">
+                        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="10">
                             <TextBlock Style="{StaticResource TextInput}" Text="Data Urodzenia:" Width="125" Margin="0,13,0,0"/>
                             <DatePicker x:Name="BirthDayDP" Margin="60,5,0,0" Width="140"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="10,5,10,10">
+                        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10,5,10,10">
                             <Button Style="{StaticResource LogicButton}" Margin="45,0,0,0" Click="RegisterBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Width="15" Height="15" Margin="0,1,8,0"/>

@@ -94,6 +94,7 @@ namespace ProjektLAB
                 };
                 UserServiceDataBase.AddNewUserToDataBase(registerUser);
                 RegisterClearInputs();
+                registerUser = UserServiceDataBase.TryLoginUser(registerUser.Login, registerUser.Password);
                 TrainServiceWindow Window = new TrainServiceWindow(registerUser);
                 Window.Show();
                 this.Close();
@@ -149,6 +150,16 @@ namespace ProjektLAB
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void RegisterPasswordTxt_MouseEnter(object sender, MouseEventArgs e)
+        {
+            RegisterPasswordLabel.Visibility = Visibility.Visible;
+        }
+
+        private void RegisterPasswordTxt_MouseLeave(object sender, MouseEventArgs e)
+        {
+            RegisterPasswordLabel.Visibility = Visibility.Collapsed;
         }
     }
 }
